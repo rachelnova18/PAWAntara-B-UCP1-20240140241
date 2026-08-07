@@ -1,0 +1,44 @@
+<%- include('partials/navbar') %>
+
+<main class="container mx-auto px-4 py-8 flex-grow">
+    <section class="mb-8">
+        <h1 class="text-3xl font-bold mb-4">Katalog Sembako</h1>
+        <!-- Form Filter -->
+        <form action="/produk" method="GET" class="flex flex-col md:flex-row gap-4 bg-white p-4 shadow rounded">
+            <div class="flex flex-col flex-grow">
+                <label for="search" class="text-sm font-semibold mb-1">Cari Nama</label>
+                <input type="text" id="search" name="search" value="<%= search || '' %>" class="border p-2 rounded" placeholder="Contoh: Beras">
+            </div>
+            <div class="flex flex-col">
+                <label for="kategori" class="text-sm font-semibold mb-1">Kategori</label>
+                <select id="kategori" name="kategori" class="border p-2 rounded">
+                    <option value="">Semua Kategori</option>
+                    <option value="beras" <%= kategori === 'beras' ? 'selected' : '' %>>Beras</option>
+                    <option value="minyak" <%= kategori === 'minyak' ? 'selected' : '' %>>Minyak</option>
+                    <option value="gula" <%= kategori === 'gula' ? 'selected' : '' %>>Gula</option>
+                </select>
+            </div>
+            <button type="submit" class="bg-blue-600 text-white px-6 py-2 rounded self-end">Filter</button>
+        </form>
+    </section>
+
+    <section>
+        <% if (products.length === 0) { %>
+            <p class="text-center text-red-500">Produk tidak ditemukan.</p>
+        <% } else { %>
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                <% products.forEach(p => { %>
+                    <article class="bg-white p-4 rounded-lg shadow border">
+                        <h3 class="font-bold text-lg"><%= p.name %></h3>
+                        <p class="text-sm text-gray-500 mb-2">Kategori: <%= p.category %></p>
+                        <p class="text-blue-600 font-semibold mb-2">Rp <%= p.price.toLocaleString('id-ID') %></p>
+                        <p class="text-sm mb-4">Stok: <%= p.stock %></p>
+                        <a href="/produk/<%= p.id %>" class="block text-center bg-gray-200 text-gray-800 px-4 py-2 rounded hover:bg-gray-300">Lihat Detail</a>
+                    </article>
+                <% }) %>
+            </div>
+        <% } %>
+    </section>
+</main>
+
+<%- include('partials/footer') %>

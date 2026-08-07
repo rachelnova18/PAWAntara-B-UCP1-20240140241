@@ -1,0 +1,23 @@
+<%- include('partials/navbar') %>
+
+<main class="container mx-auto px-4 py-8 flex-grow">
+    <section class="text-center mb-12">
+        <h1 class="text-4xl font-bold text-blue-700 mb-4">Selamat Datang di Toko Sembako Ariesta</h1>
+        <p class="text-lg text-gray-600">Pesan kebutuhan pokok Anda tanpa ribet menunggu balasan WhatsApp!</p>
+    </section>
+
+    <section>
+        <h2 class="text-2xl font-semibold mb-6">Produk Pilihan Kami</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <% products.forEach(p => { %>
+                <article class="bg-white p-4 rounded-lg shadow border">
+                    <h3 class="font-bold text-lg"><%= p.name %></h3>
+                    <p class="text-blue-600 font-semibold">Rp <%= p.price.toLocaleString('id-ID') %></p>
+                    <a href="/produk/<%= p.id %>" class="mt-4 inline-block bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition">Detail</a>
+                </article>
+            <% }) %>
+        </div>
+    </section>
+</main>
+
+<%- include('partials/footer') %>

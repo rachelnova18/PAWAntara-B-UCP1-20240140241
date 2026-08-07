@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toko Sembako Ariesta</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 text-gray-800 flex flex-col min-h-screen">
+    <header class="bg-blue-600 text-white shadow-md">
+        <nav class="container mx-auto px-4 py-3 flex justify-between items-center relative">
+            <a href="/" class="text-xl font-bold">Toko Ariesta</a>
+            
+            <!-- Hamburger Button -->
+            <button id="menu-btn" class="md:hidden focus:outline-none" aria-label="Toggle Menu">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+
+            <!-- Links (Desktop & Mobile) -->
+            <ul id="mobile-menu" class="hidden absolute top-full left-0 w-full bg-blue-600 md:static md:w-auto md:flex md:gap-6 flex-col md:flex-row p-4 md:p-0 shadow-md md:shadow-none z-10">
+                <li><a href="/" class="<%= path === '/' ? 'font-bold underline' : 'hover:text-blue-200' %>">Beranda</a></li>
+                <li><a href="/produk" class="<%= path === '/produk' ? 'font-bold underline' : 'hover:text-blue-200' %>">Produk</a></li>
+                <li><a href="/tanya-ai" class="<%= path === '/tanya-ai' ? 'font-bold underline' : 'hover:text-blue-200' %>">Tanya AI</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <script>
+        // Vanilla JS Toggle Hamburger
+        document.getElementById('menu-btn').addEventListener('click', function(e) {
+            e.preventDefault();
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+            document.getElementById('mobile-menu').classList.toggle('flex');
+        });
+    </script>

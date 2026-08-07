@@ -1,0 +1,19 @@
+<%- include('partials/navbar') %>
+
+<main class="container mx-auto px-4 py-8 flex-grow max-w-xl">
+    <section class="bg-white p-6 rounded-lg shadow border">
+        <h1 class="text-2xl font-bold mb-4">Tanya AI (Asisten Sembako)</h1>
+        <p class="text-sm text-gray-600 mb-6">Tanya seputar stok, ongkir, atau harga. Asisten AI kami akan membantu Anda.</p>
+        
+        <!-- Aksesibilitas: label 'for' terhubung ke id 'pertanyaan' -->
+        <form action="#" method="POST" class="flex flex-col gap-4">
+            <div class="flex flex-col">
+                <label for="pertanyaan" class="font-semibold mb-2">Pertanyaan Anda</label>
+                <textarea id="pertanyaan" name="pertanyaan" rows="4" class="border p-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Ketik pertanyaan di sini..." aria-label="Input pertanyaan chat"></textarea>
+            </div>
+            <button type="button" class="bg-blue-600 text-white font-bold py-2 px-4 rounded hover:bg-blue-700" onclick="alert('Fitur interaktif AI akan hadir di Sprint 2!')">Kirim Pesan</button>
+        </form>
+    </section>
+</main>
+
+<%- include('partials/footer') %>
