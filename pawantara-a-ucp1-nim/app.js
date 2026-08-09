@@ -45,7 +45,7 @@ function requireLogin(req, res, next) {
 // ================= ROUTES HALAMAN (VIEW) =================
 
 app.get('/', (req, res) => {
-    res.render('index', { path: '/' });
+    res.render('index', { products, path: '/' });
 });
 
 app.get('/produk', (req, res) => {
