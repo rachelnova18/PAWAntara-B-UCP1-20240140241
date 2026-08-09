@@ -1,0 +1,163 @@
+<%- include('partials/navbar') %>
+
+<main class="container mx-auto px-4 py-8 flex-grow max-w-6xl">
+    <div class="flex justify-between items-center mb-8">
+        <div>
+            <h1 class="text-3xl font-bold text-gray-800">Dashboard Admin</h1>
+            <p class="text-sm text-gray-500">Kelola produk sembako, harga, dan stok dengan mudah.</p>
+        </div>
+        <a href="/logout" class="bg-red-600 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-red-700 transition">Logout</a>
+    </div>
+
+    <!-- Form Tambah / Edit Produk -->
+    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 mb-8">
+        <h2 id="form-title" class="text-xl font-bold mb-4 text-gray-800">Tambah Produk Baru</h2>
+        <form id="product-form" class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <input type="hidden" id="product-id">
+            <div>
+                <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Nama Produk</label>
+                <input type="text" id="name" required class="w-full border border-gray-300 px-3 py-2 rounded-lg text-sm">
+            </div>
+            <div>
+                <label for="category" class="block text-sm font-medium text-gray-700 mb-1">Kategori</label>
+                <input type="text" id="category" required class="w-full border border-gray-300 px-3 py-2 rounded-lg text-sm">
+            </div>
+            <div>
+                <label for="price" class="block text-sm font-medium text-gray-700 mb-1">Harga (Rp)</label>
+                <input type="number" id="price" required class="w-full border border-gray-300 px-3 py-2 rounded-lg text-sm">
+            </div>
+            <div>
+                <label for="stock" class="block text-sm font-medium text-gray-700 mb-1">Stok</label>
+                <input type="number" id="stock" required class="w-full border border-gray-300 px-3 py-2 rounded-lg text-sm">
+            </div>
+            <div>
+                <label for="badge" class="block text-sm font-medium text-gray-700 mb-1">Badge (Opsional)</label>
+                <input type="text" id="badge" class="w-full border border-gray-300 px-3 py-2 rounded-lg text-sm">
+            </div>
+            <div>
+                <label for="image" class="block text-sm font-medium text-gray-700 mb-1">URL Gambar</label>
+                <input type="url" id="image" class="w-full border border-gray-300 px-3 py-2 rounded-lg text-sm">
+            </div>
+            <div class="md:col-span-3 flex gap-2">
+                <button type="submit" id="submit-btn" class="bg-[#115c38] text-white font-bold px-6 py-2 rounded-lg hover:bg-green-800 transition">Simpan Produk</button>
+                <button type="button" id="cancel-btn" onclick="resetForm()" class="hidden bg-gray-400 text-white font-bold px-4 py-2 rounded-lg">Batal Edit</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Tabel Daftar Produk -->
+    <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+        <div class="p-6 border-b">
+            <h2 class="text-xl font-bold text-gray-800">Daftar Inventaris Produk</h2>
+        </div>
+        <div class="overflow-x-auto">
+            <table class="w-full text-left border-collapse">
+                <thead>
+                    <tr class="bg-gray-100 text-gray-600 text-xs uppercase">
+                        <th class="p-4">Nama</th>
+                        <th class="p-4">Kategori</th>
+                        <th class="p-4">Harga</th>
+                        <th class="p-4">Stok</th>
+                        <th class="p-4 text-center">Aksi</th>
+                    </tr>
+                </thead>
+                <tbody id="product-table-body" class="divide-y text-sm text-gray-700">
+                    <% products.forEach(p => { %>
+                        <tr data-id="<%= p.id %>">
+                            <td class="p-4 font-semibold"><%= p.name %></td>
+                            <td class="p-4 capitalize"><%= p.category %></td>
+                            <td class="p-4">Rp <%= p.price.toLocaleString('id-ID') %></td>
+                            <td class="p-4"><%= p.stock %></td>
+                            <td class="p-4 text-center space-x-2">
+                                <button onclick="editProduct(<%= p.id %>, '<%= p.name %>', '<%= p.category %>', <%= p.price %>, <%= p.stock %>, '<%= p.badge %>', '<%= p.image %>')" class="bg-blue-600 text-white px-3 py-1 rounded text-xs">Edit</button>
+                                <button onclick="deleteProduct(<%= p.id %>)" class="bg-red-600 text-white px-3 py-1 rounded text-xs">Hapus</button>
+                            </td>
+                        </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</main>
+
+<script>
+    const form = document.getElementById('product-form');
+    const formTitle = document.getElementById('form-title');
+    const submitBtn = document.getElementById('submit-btn');
+    const cancelBtn = document.getElementById('cancel-btn');
+    const productIdInput = document.getElementById('product-id');
+
+    form.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        const id = productIdInput.value;
+        const payload = {
+            name: document.getElementById('name').value,
+            category: document.getElementById('category').value,
+            price: document.getElementById('price').value,
+            stock: document.getElementById('stock').value,
+            badge: document.getElementById('badge').value,
+            image: document.getElementById('image').value
+        };
+
+        if (!payload.name || !payload.price || !payload.stock) {
+            alert("Nama, harga, dan stok wajib diisi!");
+            return;
+        }
+
+        const url = id ? `/api/products/${id}` : '/api/products';
+        const method = id ? 'PUT' : 'POST';
+
+        const res = await fetch(url, {
+            method: method,
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+        });
+
+        const data = await res.json();
+        if (res.ok) {
+            alert(data.message);
+            location.reload();
+        } else {
+            alert(data.message || 'Gagal menyimpan produk');
+        }
+    });
+
+    function editProduct(id, name, category, price, stock, badge, image) {
+        productIdInput.value = id;
+        document.getElementById('name').value = name;
+        document.getElementById('category').value = category;
+        document.getElementById('price').value = price;
+        document.getElementById('stock').value = stock;
+        document.getElementById('badge').value = badge !== 'null' ? badge : '';
+        document.getElementById('image').value = image !== 'null' ? image : '';
+
+        formTitle.textContent = "Edit Produk";
+        submitBtn.textContent = "Update Perubahan";
+        cancelBtn.classList.remove('hidden');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function resetForm() {
+        form.reset();
+        productIdInput.value = '';
+        formTitle.textContent = "Tambah Produk Baru";
+        submitBtn.textContent = "Simpan Produk";
+        cancelBtn.classList.add('hidden');
+    }
+
+    async function deleteProduct(id) {
+        if (!confirm("Yakin ingin menghapus produk ini?")) return;
+
+        const res = await fetch(`/api/products/${id}`, { method: 'DELETE' });
+        const data = await res.json();
+
+        if (res.ok) {
+            alert(data.message);
+            location.reload();
+        } else {
+            alert(data.message || 'Gagal menghapus produk');
+        }
+    }
+</script>
+
+<%- include('partials/footer') %>

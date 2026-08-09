@@ -1,19 +1,61 @@
 <%- include('partials/navbar') %>
 
-<main class="container mx-auto px-4 py-8 flex-grow max-w-xl">
-    <section class="bg-white p-6 rounded-lg shadow border">
-        <h1 class="text-2xl font-bold mb-4">Tanya AI (Asisten Sembako)</h1>
-        <p class="text-sm text-gray-600 mb-6">Tanya seputar stok, ongkir, atau harga. Asisten AI kami akan membantu Anda.</p>
-        
-        <!-- Aksesibilitas: label 'for' terhubung ke id 'pertanyaan' -->
-        <form action="#" method="POST" class="flex flex-col gap-4">
-            <div class="flex flex-col">
-                <label for="pertanyaan" class="font-semibold mb-2">Pertanyaan Anda</label>
-                <textarea id="pertanyaan" name="pertanyaan" rows="4" class="border p-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Ketik pertanyaan di sini..." aria-label="Input pertanyaan chat"></textarea>
-            </div>
-            <button type="button" class="bg-blue-600 text-white font-bold py-2 px-4 rounded hover:bg-blue-700" onclick="alert('Fitur interaktif AI akan hadir di Sprint 2!')">Kirim Pesan</button>
-        </form>
-    </section>
+<main class="container mx-auto px-4 py-8 flex-grow max-w-2xl flex flex-col">
+    <h1 class="text-2xl font-bold mb-4 text-gray-800">Tanya AI - Toko Sembako Ariesta</h1>
+    
+    <!-- Chat Box Container -->
+    <div id="chat-container" class="bg-white border border-gray-200 rounded-2xl p-4 flex-grow h-[400px] overflow-y-auto mb-4 flex flex-col gap-3 shadow-inner">
+        <div class="bg-gray-100 p-3 rounded-lg max-w-[80%] text-sm text-gray-700">
+            Halo Kak! Ada yang bisa saya bantu seputar informasi toko, jam buka, atau ketersediaan sembako?
+        </div>
+    </div>
+
+    <!-- Form Chat Input -->
+    <form id="chat-form" class="flex gap-2">
+        <input type="text" id="chat-input" placeholder="Ketik pertanyaan..." required class="flex-grow border border-gray-300 px-4 py-2 rounded-lg text-sm focus:outline-none focus:border-green-600">
+        <button type="submit" class="bg-[#115c38] text-white font-bold px-6 py-2 rounded-lg hover:bg-green-800 transition">Kirim</button>
+    </form>
 </main>
+
+<script>
+    const chatContainer = document.getElementById('chat-container');
+    const chatForm = document.getElementById('chat-form');
+    const chatInput = document.getElementById('chat-input');
+
+    chatForm.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        const message = chatInput.value.trim();
+        if (!message) return;
+
+        // Tampilkan pesan user ke DOM
+        const userBubble = document.createElement('div');
+        userBubble.className = "bg-green-100 text-green-900 p-3 rounded-lg max-w-[80%] ml-auto text-sm";
+        userBubble.textContent = message;
+        chatContainer.appendChild(userBubble);
+        chatInput.value = '';
+        chatContainer.scrollTop = chatContainer.scrollHeight;
+
+        try {
+            const res = await fetch('/api/chat', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ message })
+            });
+            const data = await res.json();
+
+            // Tampilkan balasan AI ke DOM
+            const aiBubble = document.createElement('div');
+            aiBubble.className = "bg-gray-100 text-gray-800 p-3 rounded-lg max-w-[80%] text-sm";
+            aiBubble.textContent = data.reply || "Maaf, terjadi kesalahan.";
+            chatContainer.appendChild(aiBubble);
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+        } catch (err) {
+            const errBubble = document.createElement('div');
+            errBubble.className = "bg-red-100 text-red-700 p-3 rounded-lg max-w-[80%] text-sm";
+            errBubble.textContent = "Gagal terhubung ke server AI.";
+            chatContainer.appendChild(errBubble);
+        }
+    });
+</script>
 
 <%- include('partials/footer') %>
