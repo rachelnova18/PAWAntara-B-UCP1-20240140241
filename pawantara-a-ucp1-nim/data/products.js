@@ -1,4 +1,5 @@
-const products = [
+// Data Produk In-Memory
+let products = [
   { 
     id: 1, 
     name: "Beras 5kg Premium", 
@@ -55,4 +56,11 @@ const products = [
   }
 ];
 
-module.exports = products;
+// Data Akun Admin (Username: admin, Password: password123 yang sudah di-hash)
+// Password asli: password123
+const adminUser = {
+  username: "admin",
+  passwordHash: "$2a$10$X1V5p4yZ2Q6qG8Z5Z5Z5Z.u5Z5Z5Z5Z5Z5Z5Z5Z5Z5Z5Z5Z5Z5Z5O" // Kita pakai logika validasi langsung di app.js atau bcrypt compare
+};
+
+module.exports = { products, adminUser };
