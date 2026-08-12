@@ -1,0 +1,185 @@
+/* ==========================================================================
+   ELEGANT MAROON & GOLD DESIGN SYSTEM - TOKO SEMBAKO ARIESTA
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Outfit:wght@400;600;700;800;900&display=swap');
+
+:root {
+  --maroon-dark: #4a0c1a;
+  --maroon-primary: #75142c;
+  --maroon-hover: #8f1a38;
+  --maroon-light: #fcf2f4;
+  --maroon-border: #f3d5dc;
+  
+  --gold-primary: #c59b27;
+  --gold-light: #fef9e7;
+  --gold-hover: #b0881e;
+  
+  --bg-cream: #faf7f4;
+  --card-bg: #ffffff;
+  --card-border: #eee7e0;
+  
+  --text-main: #2b1d22;
+  --text-muted: #6e5e64;
+  
+  --gradient-maroon: linear-gradient(135deg, #570d20 0%, #831632 50%, #440918 100%);
+  --gradient-gold: linear-gradient(135deg, #d4af37 0%, #e6c687 50%, #b8860b 100%);
+}
+
+/* Base Body Setup */
+body {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  background-color: var(--bg-cream);
+  color: var(--text-main);
+  min-height: 100vh;
+}
+
+/* Custom Text Gradients & Colors */
+.text-maroon {
+  color: var(--maroon-primary);
+}
+
+.text-maroon-dark {
+  color: var(--maroon-dark);
+}
+
+.text-gold {
+  color: var(--gold-primary);
+}
+
+.maroon-gradient-text {
+  background: var(--gradient-maroon);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-family: 'Outfit', sans-serif;
+}
+
+/* Cards */
+.maroon-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  box-shadow: 0 4px 20px rgba(117, 20, 44, 0.05);
+  transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.maroon-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--maroon-border);
+  box-shadow: 0 10px 30px rgba(117, 20, 44, 0.12);
+}
+
+/* Sidebar Primary Card (Maroon Luxury Box) */
+.maroon-sidebar-primary {
+  background: var(--gradient-maroon);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  box-shadow: 0 12px 35px rgba(74, 12, 26, 0.25);
+  color: #ffffff;
+}
+
+/* Price Tag Pill */
+.maroon-price-tag {
+  background: rgba(117, 20, 44, 0.92);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(212, 175, 55, 0.5);
+  color: #ffffff;
+  font-weight: 800;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Buttons */
+.maroon-btn {
+  background: var(--maroon-primary);
+  color: #ffffff;
+  font-weight: 700;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 14px rgba(117, 20, 44, 0.25);
+}
+
+.maroon-btn:hover {
+  background: var(--maroon-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(117, 20, 44, 0.4);
+  color: #ffffff;
+}
+
+.maroon-btn-gold {
+  background: var(--gradient-gold);
+  color: #3b0915;
+  font-weight: 800;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 14px rgba(197, 155, 39, 0.3);
+}
+
+.maroon-btn-gold:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(197, 155, 39, 0.5);
+  color: #2b060f;
+}
+
+.maroon-btn-secondary {
+  background: #ffffff;
+  border: 1px solid var(--card-border);
+  color: var(--maroon-primary);
+  font-weight: 700;
+  transition: all 0.25s ease;
+}
+
+.maroon-btn-secondary:hover {
+  background: var(--maroon-light);
+  border-color: var(--maroon-border);
+  color: var(--maroon-dark);
+}
+
+/* Badges */
+.maroon-badge {
+  background: var(--maroon-primary);
+  color: #ffffff;
+}
+
+.maroon-badge-gold {
+  background: var(--gold-light);
+  border: 1px solid rgba(197, 155, 39, 0.4);
+  color: #8c6a0c;
+}
+
+/* Inputs & Selects */
+.maroon-input {
+  background: #ffffff;
+  border: 1px solid var(--card-border);
+  color: var(--text-main);
+  transition: all 0.25s ease;
+}
+
+.maroon-input:focus {
+  outline: none;
+  border-color: var(--maroon-primary);
+  box-shadow: 0 0 0 3px rgba(117, 20, 44, 0.12);
+}
+
+/* Accordion Item */
+.maroon-accordion-item {
+  background: #ffffff;
+  border: 1px solid var(--card-border);
+  transition: all 0.2s ease;
+}
+
+.maroon-accordion-item:hover {
+  border-color: var(--maroon-border);
+  background: var(--maroon-light);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-cream);
+}
+::-webkit-scrollbar-thumb {
+  background: #a87f89;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--maroon-primary);
+}

@@ -1,76 +1,143 @@
 <%- include('partials/navbar') %>
 
 <main class="container mx-auto px-4 py-8 flex-grow max-w-6xl">
-    <div class="flex justify-between items-center mb-8">
+    
+    <!-- Top Header Dashboard Maroon -->
+    <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4 maroon-card p-6 rounded-3xl">
         <div>
-            <h1 class="text-3xl font-bold text-gray-800">Dashboard Admin</h1>
-            <p class="text-sm text-gray-500">Kelola produk sembako, harga, dan stok dengan mudah.</p>
+            <div class="flex items-center gap-2">
+                <h1 class="text-2xl md:text-3xl font-black text-[#3b0915]">Dashboard Inventaris Admin</h1>
+                <span class="maroon-badge-gold text-xs font-extrabold px-3 py-1 rounded-full">Pro Admin</span>
+            </div>
+            <p class="text-xs text-slate-500 mt-1">Kelola daftar produk sembako, ubah harga, update stok, dan hapus item secara realtime.</p>
         </div>
-        <a href="/logout" class="bg-red-600 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-red-700 transition">Logout</a>
+        <div class="flex items-center gap-3">
+            <a href="/produk" target="_blank" class="maroon-btn-secondary font-bold px-4 py-2.5 rounded-xl text-xs flex items-center gap-1">
+                🌐 Lihat Katalog Publik
+            </a>
+            <a href="/logout" class="bg-rose-100 text-rose-800 border border-rose-200 px-4 py-2.5 rounded-xl text-xs font-bold hover:bg-rose-200 transition shadow-xs">
+                🚪 Logout
+            </a>
+        </div>
     </div>
 
-    <!-- Form Tambah / Edit Produk -->
-    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 mb-8">
-        <h2 id="form-title" class="text-xl font-bold mb-4 text-gray-800">Tambah Produk Baru</h2>
+    <!-- Form Tambah / Edit Produk Maroon -->
+    <div class="maroon-card p-6 md:p-8 rounded-3xl mb-8">
+        <div class="flex items-center justify-between mb-6 pb-4 border-b border-slate-100">
+            <h2 id="form-title" class="text-lg font-extrabold text-slate-800 flex items-center gap-2">
+                <span>➕</span> <span>Tambah Produk Baru</span>
+            </h2>
+            <span id="form-mode-badge" class="text-xs font-semibold text-[#75142c] bg-rose-50 border border-rose-100 px-3 py-1 rounded-full">Mode: Tambah</span>
+        </div>
+
         <form id="product-form" class="grid grid-cols-1 md:grid-cols-3 gap-4">
             <input type="hidden" id="product-id">
+            
             <div>
-                <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Nama Produk</label>
-                <input type="text" id="name" required class="w-full border border-gray-300 px-3 py-2 rounded-lg text-sm">
+                <label for="name" class="block text-xs font-bold text-slate-700 mb-1">Nama Produk *</label>
+                <input type="text" id="name" required placeholder="Contoh: Beras 5kg Premium" class="maroon-input w-full px-4 py-2.5 rounded-xl text-sm">
             </div>
+            
             <div>
-                <label for="category" class="block text-sm font-medium text-gray-700 mb-1">Kategori</label>
-                <input type="text" id="category" required class="w-full border border-gray-300 px-3 py-2 rounded-lg text-sm">
+                <label for="category" class="block text-xs font-bold text-slate-700 mb-1">Kategori *</label>
+                <select id="category" required class="maroon-input w-full px-4 py-2.5 rounded-xl text-sm">
+                    <option value="beras">Beras</option>
+                    <option value="minyak">Minyak Goreng</option>
+                    <option value="gula">Gula Pasir</option>
+                    <option value="telur">Telur Ayam</option>
+                    <option value="tepung">Tepung Terigu</option>
+                    <option value="bumbu">Bumbu & Garam</option>
+                    <option value="umum">Lainnya / Umum</option>
+                </select>
             </div>
+            
             <div>
-                <label for="price" class="block text-sm font-medium text-gray-700 mb-1">Harga (Rp)</label>
-                <input type="number" id="price" required class="w-full border border-gray-300 px-3 py-2 rounded-lg text-sm">
+                <label for="price" class="block text-xs font-bold text-slate-700 mb-1">Harga (Rp) *</label>
+                <input type="number" id="price" required min="0" placeholder="Contoh: 65000" class="maroon-input w-full px-4 py-2.5 rounded-xl text-sm">
             </div>
+            
             <div>
-                <label for="stock" class="block text-sm font-medium text-gray-700 mb-1">Stok</label>
-                <input type="number" id="stock" required class="w-full border border-gray-300 px-3 py-2 rounded-lg text-sm">
+                <label for="stock" class="block text-xs font-bold text-slate-700 mb-1">Jumlah Stok *</label>
+                <input type="number" id="stock" required min="0" placeholder="Contoh: 20" class="maroon-input w-full px-4 py-2.5 rounded-xl text-sm">
             </div>
+            
             <div>
-                <label for="badge" class="block text-sm font-medium text-gray-700 mb-1">Badge (Opsional)</label>
-                <input type="text" id="badge" class="w-full border border-gray-300 px-3 py-2 rounded-lg text-sm">
+                <label for="badge" class="block text-xs font-bold text-slate-700 mb-1">Badge Promo (Opsional)</label>
+                <input type="text" id="badge" placeholder="Contoh: Best Sale / Diskon" class="maroon-input w-full px-4 py-2.5 rounded-xl text-sm">
             </div>
+            
             <div>
-                <label for="image" class="block text-sm font-medium text-gray-700 mb-1">URL Gambar</label>
-                <input type="url" id="image" class="w-full border border-gray-300 px-3 py-2 rounded-lg text-sm">
+                <label for="image" class="block text-xs font-bold text-slate-700 mb-1">URL Gambar (Opsional)</label>
+                <input type="url" id="image" placeholder="/images/..." class="maroon-input w-full px-4 py-2.5 rounded-xl text-sm">
             </div>
-            <div class="md:col-span-3 flex gap-2">
-                <button type="submit" id="submit-btn" class="bg-[#115c38] text-white font-bold px-6 py-2 rounded-lg hover:bg-green-800 transition">Simpan Produk</button>
-                <button type="button" id="cancel-btn" onclick="resetForm()" class="hidden bg-gray-400 text-white font-bold px-4 py-2 rounded-lg">Batal Edit</button>
+            
+            <div class="md:col-span-3 flex gap-3 pt-2">
+                <button type="submit" id="submit-btn" class="maroon-btn font-extrabold px-6 py-2.5 rounded-xl text-sm shadow-xs">
+                    Simpan Produk
+                </button>
+                <button type="button" id="cancel-btn" onclick="resetForm()" class="hidden maroon-btn-secondary font-bold px-4 py-2.5 rounded-xl text-sm">
+                    Batal Edit
+                </button>
             </div>
         </form>
     </div>
 
-    <!-- Tabel Daftar Produk -->
-    <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
-        <div class="p-6 border-b">
-            <h2 class="text-xl font-bold text-gray-800">Daftar Inventaris Produk</h2>
+    <!-- Tabel Daftar Produk Maroon -->
+    <div class="maroon-card rounded-3xl overflow-hidden shadow-sm">
+        <div class="p-6 border-b border-slate-100 flex justify-between items-center">
+            <div>
+                <h2 class="text-lg font-extrabold text-[#3b0915]">Daftar Inventaris Produk</h2>
+                <p class="text-xs text-slate-500">Total <%= products.length %> item terdaftar</p>
+            </div>
         </div>
+
         <div class="overflow-x-auto">
             <table class="w-full text-left border-collapse">
                 <thead>
-                    <tr class="bg-gray-100 text-gray-600 text-xs uppercase">
-                        <th class="p-4">Nama</th>
+                    <tr class="bg-rose-50/50 text-[#75142c] text-xs font-extrabold uppercase tracking-wider border-b border-slate-100">
+                        <th class="p-4">Produk</th>
                         <th class="p-4">Kategori</th>
                         <th class="p-4">Harga</th>
                         <th class="p-4">Stok</th>
                         <th class="p-4 text-center">Aksi</th>
                     </tr>
                 </thead>
-                <tbody id="product-table-body" class="divide-y text-sm text-gray-700">
+                <tbody id="product-table-body" class="divide-y divide-slate-100 text-sm text-slate-700">
                     <% products.forEach(p => { %>
-                        <tr data-id="<%= p.id %>">
-                            <td class="p-4 font-semibold"><%= p.name %></td>
-                            <td class="p-4 capitalize"><%= p.category %></td>
-                            <td class="p-4">Rp <%= p.price.toLocaleString('id-ID') %></td>
-                            <td class="p-4"><%= p.stock %></td>
-                            <td class="p-4 text-center space-x-2">
-                                <button onclick="editProduct(<%= p.id %>, '<%= p.name %>', '<%= p.category %>', <%= p.price %>, <%= p.stock %>, '<%= p.badge %>', '<%= p.image %>')" class="bg-blue-600 text-white px-3 py-1 rounded text-xs">Edit</button>
-                                <button onclick="deleteProduct(<%= p.id %>)" class="bg-red-600 text-white px-3 py-1 rounded text-xs">Hapus</button>
+                        <tr data-id="<%= p.id %>" class="hover:bg-slate-50/80 transition">
+                            <td class="p-4">
+                                <div class="flex items-center gap-3">
+                                    <img src="<%= p.image %>" alt="<%= p.name %>" class="w-10 h-10 rounded-xl object-cover border border-slate-100 bg-slate-50">
+                                    <div>
+                                        <p class="font-bold text-slate-800 leading-tight"><%= p.name %></p>
+                                        <% if (p.badge) { %>
+                                            <span class="text-[10px] maroon-badge font-bold px-1.5 py-0.5 rounded uppercase"><%= p.badge %></span>
+                                        <% } %>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="p-4 capitalize">
+                                <span class="bg-slate-100 text-slate-700 border border-slate-200 text-xs font-semibold px-2.5 py-1 rounded-lg">
+                                    <%= p.category %>
+                                </span>
+                            </td>
+                            <td class="p-4 font-extrabold text-[#75142c]">
+                                Rp <%= p.price.toLocaleString('id-ID') %>
+                            </td>
+                            <td class="p-4">
+                                <span class="<%= p.stock > 0 ? 'text-slate-800 font-bold' : 'text-red-600 font-bold' %>">
+                                    <%= p.stock %> item
+                                </span>
+                            </td>
+                            <td class="p-4 text-center">
+                                <div class="flex justify-center gap-2">
+                                    <button onclick="editProduct('<%= p.id %>', '<%= p.name.replace(/'/g, "\\'") %>', '<%= p.category %>', <%= p.price %>, <%= p.stock %>, '<%= p.badge.replace(/'/g, "\\'") %>', '<%= p.image %>')" class="bg-blue-50 text-blue-700 border border-blue-200 hover:bg-blue-100 font-bold px-3 py-1.5 rounded-lg text-xs transition shadow-xs">
+                                        ✏️ Edit
+                                    </button>
+                                    <button onclick="deleteProduct('<%= p.id %>')" class="bg-rose-50 text-rose-700 border border-rose-200 hover:bg-rose-100 font-bold px-3 py-1.5 rounded-lg text-xs transition shadow-xs">
+                                        🗑️ Hapus
+                                    </button>
+                                </div>
                             </td>
                         </tr>
                     <% }) %>
@@ -83,6 +150,7 @@
 <script>
     const form = document.getElementById('product-form');
     const formTitle = document.getElementById('form-title');
+    const formBadge = document.getElementById('form-mode-badge');
     const submitBtn = document.getElementById('submit-btn');
     const cancelBtn = document.getElementById('cancel-btn');
     const productIdInput = document.getElementById('product-id');
@@ -91,15 +159,15 @@
         e.preventDefault();
         const id = productIdInput.value;
         const payload = {
-            name: document.getElementById('name').value,
+            name: document.getElementById('name').value.trim(),
             category: document.getElementById('category').value,
             price: document.getElementById('price').value,
             stock: document.getElementById('stock').value,
-            badge: document.getElementById('badge').value,
-            image: document.getElementById('image').value
+            badge: document.getElementById('badge').value.trim(),
+            image: document.getElementById('image').value.trim()
         };
 
-        if (!payload.name || !payload.price || !payload.stock) {
+        if (!payload.name || payload.price === '' || payload.stock === '') {
             alert("Nama, harga, dan stok wajib diisi!");
             return;
         }
@@ -107,18 +175,26 @@
         const url = id ? `/api/products/${id}` : '/api/products';
         const method = id ? 'PUT' : 'POST';
 
-        const res = await fetch(url, {
-            method: method,
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(payload)
-        });
+        submitBtn.disabled = true;
 
-        const data = await res.json();
-        if (res.ok) {
-            alert(data.message);
-            location.reload();
-        } else {
-            alert(data.message || 'Gagal menyimpan produk');
+        try {
+            const res = await fetch(url, {
+                method: method,
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            });
+
+            const data = await res.json();
+            if (res.ok && data.status === 'success') {
+                alert(data.message || 'Berhasil menyimpan data produk!');
+                location.reload();
+            } else {
+                alert(data.message || 'Gagal menyimpan produk');
+            }
+        } catch (err) {
+            alert("Terjadi kesalahan koneksi ke server.");
+        } finally {
+            submitBtn.disabled = false;
         }
     });
 
@@ -128,11 +204,13 @@
         document.getElementById('category').value = category;
         document.getElementById('price').value = price;
         document.getElementById('stock').value = stock;
-        document.getElementById('badge').value = badge !== 'null' ? badge : '';
-        document.getElementById('image').value = image !== 'null' ? image : '';
+        document.getElementById('badge').value = badge !== 'null' && badge !== 'undefined' ? badge : '';
+        document.getElementById('image').value = image !== 'null' && image !== 'undefined' ? image : '';
 
-        formTitle.textContent = "Edit Produk";
-        submitBtn.textContent = "Update Perubahan";
+        formTitle.innerHTML = '<span>✏️</span> <span>Edit Produk</span>';
+        formBadge.textContent = 'Mode: Edit';
+        formBadge.className = 'text-xs font-semibold text-blue-700 bg-blue-50 px-3 py-1 rounded-full';
+        submitBtn.textContent = 'Update Perubahan';
         cancelBtn.classList.remove('hidden');
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }
@@ -140,22 +218,28 @@
     function resetForm() {
         form.reset();
         productIdInput.value = '';
-        formTitle.textContent = "Tambah Produk Baru";
-        submitBtn.textContent = "Simpan Produk";
+        formTitle.innerHTML = '<span>➕</span> <span>Tambah Produk Baru</span>';
+        formBadge.textContent = 'Mode: Tambah';
+        formBadge.className = 'text-xs font-semibold text-gray-400 bg-gray-100 px-3 py-1 rounded-full';
+        submitBtn.textContent = 'Simpan Produk';
         cancelBtn.classList.add('hidden');
     }
 
     async function deleteProduct(id) {
-        if (!confirm("Yakin ingin menghapus produk ini?")) return;
+        if (!confirm("Yakin ingin menghapus produk ini dari inventaris?")) return;
 
-        const res = await fetch(`/api/products/${id}`, { method: 'DELETE' });
-        const data = await res.json();
+        try {
+            const res = await fetch(`/api/products/${id}`, { method: 'DELETE' });
+            const data = await res.json();
 
-        if (res.ok) {
-            alert(data.message);
-            location.reload();
-        } else {
-            alert(data.message || 'Gagal menghapus produk');
+            if (res.ok && data.status === 'success') {
+                alert(data.message || 'Produk berhasil dihapus');
+                location.reload();
+            } else {
+                alert(data.message || 'Gagal menghapus produk');
+            }
+        } catch (err) {
+            alert("Terjadi kesalahan saat menghapus produk.");
         }
     }
 </script>

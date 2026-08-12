@@ -1,39 +1,108 @@
 <%- include('partials/navbar') %>
 
-<main class="container mx-auto px-4 py-8 flex-grow max-w-2xl flex flex-col">
-    <h1 class="text-2xl font-bold mb-4 text-gray-800">Tanya AI - Toko Sembako Ariesta</h1>
-    
-    <!-- Chat Box Container -->
-    <div id="chat-container" class="bg-white border border-gray-200 rounded-2xl p-4 flex-grow h-[400px] overflow-y-auto mb-4 flex flex-col gap-3 shadow-inner">
-        <div class="bg-gray-100 p-3 rounded-lg max-w-[80%] text-sm text-gray-700">
-            Halo Kak! Ada yang bisa saya bantu seputar informasi toko, jam buka, atau ketersediaan sembako?
-        </div>
+<main class="container mx-auto px-4 py-8 flex-grow max-w-3xl flex flex-col">
+    <!-- Header Page -->
+    <div class="mb-6 text-center md:text-left">
+        <span class="maroon-badge-gold text-xs font-extrabold px-3.5 py-1 rounded-full uppercase tracking-wider inline-block mb-2">
+            ✨ Fitur Tanya AI
+        </span>
+        <h1 class="text-2xl md:text-4xl font-black text-[#3b0915]">Tanya AI - Toko Sembako Ariesta</h1>
+        <p class="text-xs md:text-sm text-slate-500 mt-1">Dapatkan jawaban instan seputar jam operasional toko, ongkir, metode pembayaran, dan stok sembako.</p>
     </div>
+    
+    <!-- Chat Container Card Maroon -->
+    <div class="maroon-card rounded-3xl p-4 md:p-6 shadow-sm flex flex-col flex-grow min-h-[440px] max-h-[520px]">
+        
+        <!-- List Pesan Chat -->
+        <div id="chat-container" class="flex-grow overflow-y-auto pr-2 mb-4 flex flex-col gap-3 scroll-smooth">
+            <!-- Welcome Message AI -->
+            <div class="flex gap-3 items-start max-w-[85%]">
+                <div class="w-9 h-9 rounded-full bg-[#75142c] text-white flex items-center justify-center text-sm font-bold shrink-0 shadow-xs">
+                    🤖
+                </div>
+                <div class="bg-slate-100 text-slate-800 p-3.5 rounded-2xl rounded-tl-none text-sm leading-relaxed shadow-xs">
+                    Halo Kak! Selamat datang di Toko Sembako Ariesta 👋<br>
+                    Ada yang bisa saya bantu? Silakan tanyakan seputar <strong class="text-[#75142c]">jam buka</strong>, <strong class="text-[#75142c]">ongkir</strong>, <strong class="text-[#75142c]">cara pembayaran</strong>, atau <strong class="text-[#75142c]">ketersediaan stok</strong> ya!
+                </div>
+            </div>
+        </div>
 
-    <!-- Form Chat Input -->
-    <form id="chat-form" class="flex gap-2">
-        <input type="text" id="chat-input" placeholder="Ketik pertanyaan..." required class="flex-grow border border-gray-300 px-4 py-2 rounded-lg text-sm focus:outline-none focus:border-green-600">
-        <button type="submit" class="bg-[#115c38] text-white font-bold px-6 py-2 rounded-lg hover:bg-green-800 transition">Kirim</button>
-    </form>
+        <!-- Prompt Suggestions Chips -->
+        <div class="flex flex-wrap gap-2 mb-4 pt-3 border-t border-slate-100 text-xs">
+            <span class="text-slate-500 font-semibold flex items-center gap-1">Rekomendasi:</span>
+            <button onclick="sendQuickPrompt('Jam berapa toko buka?')" class="maroon-btn-secondary px-3 py-1.5 rounded-full font-medium transition text-xs">
+                ⏰ Jam Buka?
+            </button>
+            <button onclick="sendQuickPrompt('Berapa ongkir dan minimal belanja?')" class="maroon-btn-secondary px-3 py-1.5 rounded-full font-medium transition text-xs">
+                🚚 Ongkir & Delivery?
+            </button>
+            <button onclick="sendQuickPrompt('Bisa bayar pakai apa saja?')" class="maroon-btn-secondary px-3 py-1.5 rounded-full font-medium transition text-xs">
+                💳 Pembayaran?
+            </button>
+            <button onclick="sendQuickPrompt('Apakah stok beras dan minyak ada?')" class="maroon-btn-secondary px-3 py-1.5 rounded-full font-medium transition text-xs">
+                🌾 Stok Sembako?
+            </button>
+        </div>
+
+        <!-- Form Chat Input -->
+        <form id="chat-form" class="flex gap-2 relative">
+            <label for="chat-input" class="sr-only">Ketik Pertanyaan</label>
+            <input type="text" id="chat-input" placeholder="Tanyakan seputar sembako, jam buka, atau ongkir..." required class="maroon-input flex-grow px-4 py-3 rounded-xl text-sm">
+            <button type="submit" id="chat-send-btn" class="maroon-btn px-6 py-3 rounded-xl text-sm flex items-center gap-1 shrink-0 font-extrabold">
+                <span>Kirim</span>
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path></svg>
+            </button>
+        </form>
+    </div>
 </main>
 
 <script>
     const chatContainer = document.getElementById('chat-container');
     const chatForm = document.getElementById('chat-form');
     const chatInput = document.getElementById('chat-input');
+    const chatSendBtn = document.getElementById('chat-send-btn');
+
+    function sendQuickPrompt(promptText) {
+        chatInput.value = promptText;
+        chatForm.dispatchEvent(new Event('submit'));
+    }
 
     chatForm.addEventListener('submit', async function(e) {
         e.preventDefault();
         const message = chatInput.value.trim();
         if (!message) return;
 
-        // Tampilkan pesan user ke DOM
-        const userBubble = document.createElement('div');
-        userBubble.className = "bg-green-100 text-green-900 p-3 rounded-lg max-w-[80%] ml-auto text-sm";
-        userBubble.textContent = message;
-        chatContainer.appendChild(userBubble);
+        // Append User Bubble to DOM
+        const userWrapper = document.createElement('div');
+        userWrapper.className = "flex gap-3 items-start justify-end max-w-[85%] ml-auto";
+        userWrapper.innerHTML = `
+            <div class="maroon-btn p-3.5 rounded-2xl rounded-tr-none text-sm leading-relaxed font-semibold shadow-xs">
+                ${escapeHTML(message)}
+            </div>
+            <div class="w-9 h-9 rounded-full bg-rose-100 text-[#75142c] flex items-center justify-center text-sm font-bold shrink-0">
+                👤
+            </div>
+        `;
+        chatContainer.appendChild(userWrapper);
         chatInput.value = '';
         chatContainer.scrollTop = chatContainer.scrollHeight;
+
+        // Show Typing Indicator
+        const typingWrapper = document.createElement('div');
+        typingWrapper.id = "typing-indicator";
+        typingWrapper.className = "flex gap-3 items-start max-w-[85%]";
+        typingWrapper.innerHTML = `
+            <div class="w-9 h-9 rounded-full bg-[#75142c] text-white flex items-center justify-center text-sm font-bold shrink-0">
+                🤖
+            </div>
+            <div class="bg-slate-100 text-slate-500 p-3 rounded-2xl rounded-tl-none text-xs italic">
+                AI sedang mengetik balasan...
+            </div>
+        `;
+        chatContainer.appendChild(typingWrapper);
+        chatContainer.scrollTop = chatContainer.scrollHeight;
+
+        chatSendBtn.disabled = true;
 
         try {
             const res = await fetch('/api/chat', {
@@ -43,19 +112,52 @@
             });
             const data = await res.json();
 
-            // Tampilkan balasan AI ke DOM
-            const aiBubble = document.createElement('div');
-            aiBubble.className = "bg-gray-100 text-gray-800 p-3 rounded-lg max-w-[80%] text-sm";
-            aiBubble.textContent = data.reply || "Maaf, terjadi kesalahan.";
-            chatContainer.appendChild(aiBubble);
+            // Remove Typing Indicator
+            const indicator = document.getElementById('typing-indicator');
+            if (indicator) indicator.remove();
+
+            const replyText = (data.data && data.data.reply) ? data.data.reply : (data.reply || "Maaf, terjadi kendala saat memproses balasan.");
+
+            // Append AI Bubble to DOM
+            const aiWrapper = document.createElement('div');
+            aiWrapper.className = "flex gap-3 items-start max-w-[85%]";
+            aiWrapper.innerHTML = `
+                <div class="w-9 h-9 rounded-full bg-[#75142c] text-white flex items-center justify-center text-sm font-bold shrink-0 shadow-xs">
+                    🤖
+                </div>
+                <div class="bg-slate-100 text-slate-800 p-3.5 rounded-2xl rounded-tl-none text-sm leading-relaxed shadow-xs">
+                    ${escapeHTML(replyText)}
+                </div>
+            `;
+            chatContainer.appendChild(aiWrapper);
             chatContainer.scrollTop = chatContainer.scrollHeight;
+
         } catch (err) {
-            const errBubble = document.createElement('div');
-            errBubble.className = "bg-red-100 text-red-700 p-3 rounded-lg max-w-[80%] text-sm";
-            errBubble.textContent = "Gagal terhubung ke server AI.";
-            chatContainer.appendChild(errBubble);
+            const indicator = document.getElementById('typing-indicator');
+            if (indicator) indicator.remove();
+
+            const errWrapper = document.createElement('div');
+            errWrapper.className = "flex gap-3 items-start max-w-[85%]";
+            errWrapper.innerHTML = `
+                <div class="w-9 h-9 rounded-full bg-red-600 text-white flex items-center justify-center text-sm font-bold shrink-0">
+                    ⚠️
+                </div>
+                <div class="bg-rose-50 text-rose-800 border border-rose-200 p-3.5 rounded-2xl rounded-tl-none text-sm">
+                    Gagal terhubung ke server AI. Silakan coba beberapa saat lagi.
+                </div>
+            `;
+            chatContainer.appendChild(errWrapper);
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+        } finally {
+            chatSendBtn.disabled = false;
         }
     });
+
+    function escapeHTML(str) {
+        return str.replace(/[&<>'"]/g, 
+            tag => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[tag] || tag)
+        );
+    }
 </script>
 
 <%- include('partials/footer') %>
