@@ -1,0 +1,245 @@
+/* ==========================================================================
+   HOLOGRAPHIC / IRIDESCENT DESIGN SYSTEM - TOKO SEMBAKO ARIESTA
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Outfit:wght@400;600;700;800&display=swap');
+
+:root {
+  --holo-bg-dark: #070a12;
+  --holo-card-bg: rgba(13, 19, 33, 0.75);
+  --holo-card-border: rgba(255, 255, 255, 0.12);
+  --holo-glow-cyan: rgba(0, 242, 254, 0.5);
+  --holo-glow-pink: rgba(255, 8, 68, 0.5);
+  --holo-glow-purple: rgba(186, 85, 211, 0.5);
+  
+  --holo-gradient-primary: linear-gradient(135deg, #00f2fe 0%, #4facfe 25%, #b147ff 50%, #f77062 75%, #00f2fe 100%);
+  --holo-gradient-accent: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 25%, #e0c3fc 50%, #8ec5fc 75%, #fbc2eb 100%);
+  --holo-gradient-gold: linear-gradient(135deg, #ffe066 0%, #f77062 50%, #fe5196 100%);
+}
+
+/* Background Atmosphere */
+body {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  background-color: var(--holo-bg-dark);
+  color: #f1f5f9;
+  background-image: 
+    radial-gradient(circle at 10% 15%, rgba(0, 242, 254, 0.12) 0%, transparent 40%),
+    radial-gradient(circle at 90% 60%, rgba(186, 85, 211, 0.12) 0%, transparent 45%),
+    radial-gradient(circle at 50% 90%, rgba(247, 112, 98, 0.10) 0%, transparent 50%),
+    linear-gradient(180deg, rgba(7, 10, 18, 0.95) 0%, rgba(13, 19, 33, 0.98) 100%);
+  background-attachment: fixed;
+  min-height: 100vh;
+}
+
+/* Holographic Shimmer Keyframes */
+@keyframes holoShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes holoFloat {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-6px) rotate(0.5deg); }
+}
+
+@keyframes holoGlowPulse {
+  0%, 100% { box-shadow: 0 0 15px rgba(0, 242, 254, 0.3), inset 0 0 10px rgba(186, 85, 211, 0.2); }
+  50% { box-shadow: 0 0 30px rgba(247, 112, 98, 0.5), inset 0 0 20px rgba(0, 242, 254, 0.4); }
+}
+
+@keyframes rainbowBorder {
+  0% { border-color: #00f2fe; }
+  25% { border-color: #9d4edd; }
+  50% { border-color: #f77062; }
+  75% { border-color: #ffe066; }
+  100% { border-color: #00f2fe; }
+}
+
+/* Typography Gradient */
+.holo-text {
+  background: var(--holo-gradient-primary);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: holoShift 6s ease infinite;
+  font-family: 'Outfit', 'Plus Jakarta Sans', sans-serif;
+}
+
+.holo-text-silver {
+  background: var(--holo-gradient-accent);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: holoShift 8s ease infinite;
+}
+
+.holo-text-gold {
+  background: var(--holo-gradient-gold);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: holoShift 5s ease infinite;
+}
+
+/* Holographic Cards & Containers */
+.holo-card {
+  background: var(--holo-card-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--holo-card-border);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.holo-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(0, 242, 254, 0.4);
+  box-shadow: 0 12px 35px 0 rgba(0, 242, 254, 0.25), 0 0 15px rgba(186, 85, 211, 0.2);
+}
+
+/* Holographic Foil Mesh Banner */
+.holo-banner {
+  background: linear-gradient(135deg, rgba(0, 242, 254, 0.15) 0%, rgba(186, 85, 211, 0.2) 40%, rgba(247, 112, 98, 0.2) 80%, rgba(0, 242, 254, 0.15) 100%);
+  background-size: 300% 300%;
+  animation: holoShift 10s ease infinite;
+  backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5), inset 0 0 30px rgba(255, 255, 255, 0.1);
+}
+
+/* Holographic Interactive Buttons */
+.holo-btn {
+  background: var(--holo-gradient-primary);
+  background-size: 200% auto;
+  color: #070a12;
+  font-weight: 800;
+  transition: all 0.3s ease;
+  animation: holoShift 5s ease infinite;
+  box-shadow: 0 4px 15px rgba(0, 242, 254, 0.3);
+}
+
+.holo-btn:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 8px 25px rgba(0, 242, 254, 0.6), 0 0 15px rgba(247, 112, 98, 0.5);
+  color: #ffffff;
+}
+
+.holo-btn-secondary {
+  background: rgba(255, 255, 255, 0.07);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #f1f5f9;
+  transition: all 0.3s ease;
+}
+
+.holo-btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.18);
+  border-color: rgba(0, 242, 254, 0.5);
+  box-shadow: 0 0 20px rgba(0, 242, 254, 0.3);
+  color: #ffffff;
+}
+
+/* Badges */
+.holo-badge {
+  background: linear-gradient(135deg, rgba(255, 8, 68, 0.8), rgba(255, 177, 153, 0.8));
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 0 10px rgba(255, 8, 68, 0.4);
+  color: #ffffff;
+}
+
+.holo-badge-cyan {
+  background: linear-gradient(135deg, rgba(0, 242, 254, 0.2), rgba(79, 172, 254, 0.3));
+  border: 1px solid rgba(0, 242, 254, 0.4);
+  color: #00f2fe;
+}
+
+/* Input Fields */
+.holo-input {
+  background: rgba(13, 19, 33, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+  transition: all 0.3s ease;
+}
+
+.holo-input:focus {
+  outline: none;
+  border-color: #00f2fe;
+  box-shadow: 0 0 15px rgba(0, 242, 254, 0.4), inset 0 0 8px rgba(0, 242, 254, 0.1);
+  background: rgba(15, 23, 42, 0.95);
+}
+
+.holo-input::placeholder {
+  color: rgba(148, 163, 184, 0.6);
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #070a12;
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #00f2fe 0%, #b147ff 100%);
+  border-radius: 4px;
+}
+
+/* Floating Hologram Effect */
+.holo-float {
+  animation: holoFloat 4s ease-in-out infinite;
+}
+
+/* Image Holographic Frame */
+.holo-img-frame {
+  position: relative;
+  border-radius: 1rem;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 0 20px rgba(0, 242, 254, 0.2);
+}
+
+.holo-img-frame::after {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%; width: 50%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.25), transparent);
+  transform: skewX(-25deg);
+  transition: all 0.75s ease;
+}
+
+.holo-img-frame:hover::after {
+  left: 150%;
+}
+
+/* Price Tag Pill (Overlaid on image like in mockup) */
+.holo-price-tag {
+  background: rgba(13, 19, 33, 0.9);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(0, 242, 254, 0.4);
+  color: #00f2fe;
+  font-weight: 800;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+}
+
+/* Sidebar Featured Block (Matching START SELLING NOW block in mockup) */
+.holo-sidebar-primary {
+  background: linear-gradient(145deg, rgba(147, 51, 234, 0.4) 0%, rgba(79, 70, 229, 0.5) 50%, rgba(14, 165, 233, 0.4) 100%);
+  border: 1px solid rgba(168, 85, 247, 0.4);
+  box-shadow: 0 12px 35px rgba(147, 51, 234, 0.25);
+  backdrop-filter: blur(20px);
+}
+
+/* Accordion Item in Sidebar */
+.holo-accordion-item {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.2s ease;
+}
+
+.holo-accordion-item:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(0, 242, 254, 0.3);
+}
+

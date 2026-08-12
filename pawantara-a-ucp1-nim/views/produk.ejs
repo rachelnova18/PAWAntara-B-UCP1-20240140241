@@ -1,88 +1,182 @@
 <%- include('partials/navbar') %>
 
-<main class="container mx-auto px-4 py-8 flex-grow max-w-6xl">
+<main class="container mx-auto px-4 py-8 flex-grow max-w-7xl">
     
-    <!-- Hero Banner (Sesuai Gambar) -->
-    <section class="bg-[#115c38] rounded-2xl p-6 md:p-10 flex flex-col md:flex-row items-center justify-between text-white mb-10 overflow-hidden relative shadow-lg">
-        <div class="z-10 w-full md:w-1/2">
-            <h1 class="text-3xl md:text-5xl font-bold leading-tight mb-4">
-                Get <span class="text-yellow-400">free delivery</span> on shopping Rp 200rb
-            </h1>
-            <p class="text-green-100 mb-6 text-sm md:text-base">Get the freshest groceries delivered right to your home. Save time, skip the lines, and enjoy quick delivery.</p>
-            <button class="bg-yellow-400 text-green-900 font-bold py-2 px-6 rounded-md hover:bg-yellow-300 transition flex items-center gap-2">
-                Learn More <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
-            </button>
-        </div>
-        <!-- Ilustrasi Sayuran (Placeholder) -->
-        <div class="z-10 mt-6 md:mt-0 md:absolute md:-right-10 md:top-0 h-full flex items-center">
-            <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?w=500&q=80" alt="Groceries" class="w-64 md:w-96 rounded-full object-cover border-4 border-green-700/50 shadow-2xl mix-blend-luminosity hover:mix-blend-normal transition duration-500">
+    <!-- Hero Header Title -->
+    <section class="mb-8 border-b border-[#eee7e0] pb-6">
+        <h1 class="text-3xl md:text-5xl font-black tracking-tight text-[#3b0915] mb-2">
+            Katalog <span class="maroon-gradient-text">Produk Sembako</span>
+        </h1>
+        <div class="flex flex-wrap items-center gap-3 text-[11px] font-extrabold uppercase tracking-widest text-slate-500">
+            <span>TOKO SEMBAKO ARIESTA</span>
+            <span>•</span>
+            <span class="text-[#75142c]">BEBAS ONGKIR MIN 200RB</span>
+            <span>•</span>
+            <span class="text-[#c59b27]">PENGIRIMAN HARI INI</span>
         </div>
     </section>
 
-    <!-- Header & Filter (Sesuai Gambar) -->
-    <section class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4">
-        <h2 class="text-2xl font-bold">All Products</h2>
+    <!-- Main Asymmetric 2-Column Layout -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         
-        <form action="/produk" method="GET" class="flex flex-wrap gap-2 w-full md:w-auto">
-            <!-- Search bar -->
-            <input type="text" name="search" value="<%= search || '' %>" placeholder="Cari produk..." class="border border-gray-300 px-4 py-2 rounded-lg text-sm focus:outline-none focus:border-green-600 flex-grow md:flex-grow-0">
+        <!-- LEFT COLUMN: Filter Form & Product Grid (8 Columns) -->
+        <div class="lg:col-span-8">
             
-            <!-- Category Dropdown -->
-            <select name="kategori" class="border border-gray-300 bg-white px-4 py-2 rounded-lg text-sm font-medium focus:outline-none focus:border-green-600" onchange="this.form.submit()">
-                <option value="">All Categories ⌄</option>
-                <option value="beras" <%= kategori === 'beras' ? 'selected' : '' %>>Beras</option>
-                <option value="minyak" <%= kategori === 'minyak' ? 'selected' : '' %>>Minyak</option>
-                <option value="gula" <%= kategori === 'gula' ? 'selected' : '' %>>Gula</option>
-                <option value="telur" <%= kategori === 'telur' ? 'selected' : '' %>>Telur</option>
-            </select>
-        </form>
-    </section>
+            <!-- Search & Category Filter Bar -->
+            <section class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4 maroon-card p-4 rounded-2xl">
+                <div>
+                    <h2 class="text-sm font-extrabold uppercase tracking-wider text-[#3b0915]">All Products</h2>
+                    <p class="text-[11px] text-slate-500">Menampilkan <%= products.length %> item sembako</p>
+                </div>
+                
+                <form action="/produk" method="GET" class="flex flex-wrap gap-2 w-full md:w-auto">
+                    <!-- Search bar -->
+                    <input type="text" name="search" value="<%= search || '' %>" placeholder="Cari sembako..." class="maroon-input px-3.5 py-2 rounded-xl text-xs flex-grow md:w-52">
+                    
+                    <!-- Category Dropdown -->
+                    <select name="kategori" class="maroon-input px-3.5 py-2 rounded-xl text-xs font-semibold focus:outline-none" onchange="this.form.submit()">
+                        <option value="">Semua Kategori ▾</option>
+                        <option value="beras" <%= kategori === 'beras' ? 'selected' : '' %>>Beras</option>
+                        <option value="minyak" <%= kategori === 'minyak' ? 'selected' : '' %>>Minyak Goreng</option>
+                        <option value="gula" <%= kategori === 'gula' ? 'selected' : '' %>>Gula Pasir</option>
+                        <option value="telur" <%= kategori === 'telur' ? 'selected' : '' %>>Telur Ayam</option>
+                        <option value="tepung" <%= kategori === 'tepung' ? 'selected' : '' %>>Tepung Terigu</option>
+                        <option value="bumbu" <%= kategori === 'bumbu' ? 'selected' : '' %>>Bumbu & Garam</option>
+                    </select>
 
-    <!-- Product Grid -->
-    <section>
-        <% if (products.length === 0) { %>
-            <div class="text-center py-10">
-                <p class="text-gray-500 text-lg">Produk tidak ditemukan.</p>
-                <a href="/produk" class="text-green-600 underline mt-2 block">Reset Filter</a>
-            </div>
-        <% } else { %>
-            <!-- Grid: 2 kolom di HP, 4 kolom di Desktop -->
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
-                <% products.forEach(p => { %>
-                    <article class="bg-white p-4 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition group flex flex-col relative">
-                        
-                        <!-- Badges (Kiri Kiri Atas) -->
-                        <div class="absolute top-4 left-4 z-10 flex flex-col gap-1">
-                            <% if (p.badge) { %>
-                                <span class="bg-red-700 text-white text-[10px] font-bold px-2 py-1 rounded-sm uppercase tracking-wider"><%= p.badge %></span>
-                            <% } %>
-                        </div>
+                    <button type="submit" class="maroon-btn px-4 py-2 rounded-xl text-xs font-black uppercase">Cari</button>
+                    <% if (search || kategori) { %>
+                        <a href="/produk" class="maroon-btn-secondary px-3 py-2 rounded-xl text-xs font-semibold flex items-center">Reset</a>
+                    <% } %>
+                </form>
+            </section>
 
-                        <!-- Image (Link ke detail) -->
-                        <a href="/produk/<%= p.id %>" class="block h-32 md:h-40 w-full mb-4 overflow-hidden rounded-lg">
-                            <img src="<%= p.image %>" alt="<%= p.name %>" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
-                        </a>
-
-                        <!-- Text Content -->
-                        <a href="/produk/<%= p.id %>" class="flex-grow">
-                            <h3 class="text-sm font-semibold text-gray-800 line-clamp-2 leading-tight mb-1"><%= p.name %></h3>
-                            <p class="text-xs text-gray-400 capitalize"><%= p.category %> • Stok: <%= p.stock %></p>
-                        </a>
-
-                        <!-- Bottom Row: Price & Add Button -->
-                        <div class="mt-4 flex justify-between items-center">
-                            <p class="text-lg font-bold text-gray-900">Rp <%= (p.price / 1000).toLocaleString('id-ID') %><span class="text-xs text-gray-500 font-normal">K</span></p>
+            <!-- Product Grid -->
+            <% if (products.length === 0) { %>
+                <div class="maroon-card p-12 rounded-3xl text-center">
+                    <div class="text-4xl mb-3">🔍</div>
+                    <h3 class="text-lg font-bold text-slate-800 mb-1">Produk Tidak Ditemukan</h3>
+                    <p class="text-xs text-slate-500 mb-4">Tidak ada sembako yang sesuai dengan kriteria pencarian atau kategori Anda.</p>
+                    <a href="/produk" class="inline-block maroon-btn px-5 py-2.5 rounded-xl font-extrabold text-xs shadow-sm uppercase">
+                        Tampilkan Semua Produk
+                    </a>
+                </div>
+            <% } else { %>
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5">
+                    <% products.forEach(p => { %>
+                        <article class="maroon-card p-3.5 rounded-2xl group flex flex-col relative">
                             
-                            <!-- Tombol (+) khas Tazaj Mart -->
-                            <a href="/produk/<%= p.id %>" class="w-8 h-8 rounded-full bg-[#115c38] text-white flex justify-center items-center font-bold text-lg hover:bg-green-700 transition shadow-sm pb-1">
-                                +
+                            <!-- Badges -->
+                            <div class="absolute top-5 left-5 z-10">
+                                <% if (p.badge) { %>
+                                    <span class="maroon-badge text-[10px] font-extrabold px-2 py-0.5 rounded uppercase tracking-wider shadow-xs"><%= p.badge %></span>
+                                <% } %>
+                            </div>
+
+                            <!-- Gambar Produk + Price Overlay Tag -->
+                            <a href="/produk/<%= p.id %>" class="block h-44 w-full mb-3 overflow-hidden rounded-xl bg-slate-50 relative border border-slate-100 group-hover:border-[#75142c]/30 transition">
+                                <img src="<%= p.image %>" alt="<%= p.name %>" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                                
+                                <!-- Price Tag Pill -->
+                                <div class="absolute bottom-2.5 right-2.5 maroon-price-tag text-xs px-2.5 py-1 rounded-lg">
+                                    Rp <%= p.price.toLocaleString('id-ID') %>
+                                </div>
                             </a>
-                        </div>
-                    </article>
-                <% }) %>
+
+                            <!-- Detail Teks -->
+                            <a href="/produk/<%= p.id %>" class="flex-grow flex flex-col justify-between">
+                                <div>
+                                    <h3 class="text-sm font-extrabold text-slate-800 line-clamp-1 leading-tight mb-1 group-hover:text-[#75142c] transition"><%= p.name %></h3>
+                                    <p class="text-[11px] text-slate-500 capitalize mb-3"><%= p.category %> • Sembako Pilihan</p>
+                                </div>
+                                
+                                <div class="flex items-center justify-between pt-2 border-t border-slate-100">
+                                    <span class="text-[11px] text-slate-500">Stok: <strong class="<%= p.stock > 0 ? 'text-[#75142c]' : 'text-red-600' %>"><%= p.stock %></strong></span>
+                                    <span class="text-xs font-black text-[#75142c] group-hover:translate-x-1 transition">&rarr;</span>
+                                </div>
+                            </a>
+                        </article>
+                    <% }) %>
+                </div>
+            <% } %>
+        </div>
+
+        <!-- RIGHT SIDEBAR COLUMN: Promo & Interactive Widgets (4 Columns) -->
+        <aside class="lg:col-span-4 flex flex-col gap-6 sticky top-24">
+            
+            <!-- Sidebar Widget 1: START SELLING / SHOPPING NOW Block (Maroon Box) -->
+            <div class="maroon-sidebar-primary p-6 rounded-3xl text-white shadow-xl relative overflow-hidden">
+                
+                <span class="inline-block maroon-badge-gold text-[10px] font-extrabold px-3 py-1 rounded-full uppercase tracking-wider mb-4">
+                    ⚡ Asisten AI Toko
+                </span>
+                
+                <h3 class="text-2xl font-black uppercase tracking-tight leading-tight mb-2 text-white">
+                    Start Shopping Now
+                </h3>
+                
+                <p class="text-xs text-rose-100 leading-relaxed mb-6">
+                    Pesan sembako instan & dapatkan informasi ongkir serta stok realtime via AI.
+                </p>
+
+                <!-- Quick Query Selector -->
+                <div class="mb-5">
+                    <select onchange="if(this.value) window.location.href='/tanya-ai'" class="maroon-input w-full px-3.5 py-2.5 rounded-xl text-xs bg-white text-slate-800 font-semibold border-none">
+                        <option value="">Pilih Informasi Cepat... ▾</option>
+                        <option value="buka">⏰ Jam Operasional Toko</option>
+                        <option value="ongkir">🚚 Tarif Gratis Ongkir</option>
+                        <option value="bayar">💳 Metode Pembayaran</option>
+                        <option value="stok">🌾 Cek Sembako Ready</option>
+                    </select>
+                </div>
+
+                <!-- Big Action Button (Gold Button) -->
+                <a href="/tanya-ai" class="maroon-btn-gold w-full py-3.5 rounded-xl flex items-center justify-center gap-2 text-xs font-black uppercase tracking-wider shadow-md">
+                    <span>Tanya AI Sekarang</span>
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                </a>
             </div>
-        <% } %>
-    </section>
+
+            <!-- Sidebar Widget 2: Accordion Block -->
+            <div class="maroon-card p-6 rounded-3xl shadow-sm flex flex-col gap-4">
+                
+                <a href="https://wa.me/" target="_blank" class="maroon-btn-secondary w-full py-3.5 rounded-xl text-center text-xs font-black uppercase tracking-wider shadow-xs">
+                    💬 Pesan Langsung Via WA &rarr;
+                </a>
+
+                <div class="space-y-2 pt-2">
+                    <details class="maroon-accordion-item rounded-xl p-3 text-xs">
+                        <summary class="font-extrabold text-slate-800 cursor-pointer flex justify-between items-center">
+                            <span>METODE PEMBAYARAN</span>
+                            <span class="text-[#75142c] text-xs">▾</span>
+                        </summary>
+                        <p class="mt-2 text-slate-600 leading-relaxed text-[11px]">
+                            Mendukung Tunai (COD / Kasir), Transfer Bank (BCA & Mandiri), serta QRIS All Payment.
+                        </p>
+                    </details>
+
+                    <details class="maroon-accordion-item rounded-xl p-3 text-xs">
+                        <summary class="font-extrabold text-slate-800 cursor-pointer flex justify-between items-center">
+                            <span>ESTIMASI PENGIRIMAN</span>
+                            <span class="text-[#75142c] text-xs">▾</span>
+                        </summary>
+                        <p class="mt-2 text-slate-600 leading-relaxed text-[11px]">
+                            Pengiriman lokal gratis ongkir minimal belanja Rp 200.000 dikirim di hari yang sama.
+                        </p>
+                    </details>
+                </div>
+
+                <div class="pt-4 border-t border-slate-100 text-center">
+                    <span class="text-[10px] font-black tracking-widest text-slate-400 uppercase">
+                        TOKO ARIESTA • OFFICIAL STORE
+                    </span>
+                </div>
+            </div>
+
+        </aside>
+
+    </div>
+
 </main>
 
 <%- include('partials/footer') %>
