@@ -1,4 +1,6 @@
-// Data Produk In-Memory
+const bcrypt = require('bcryptjs');
+
+// Data Produk In-Memory dengan Gambar Relevan & Presisi
 let products = [
   { 
     id: 1, 
@@ -7,7 +9,7 @@ let products = [
     price: 65000, 
     stock: 20, 
     badge: "Best Sale", 
-    image: "https://images.unsplash.com/photo-1586201375761-83865001e8ac?w=400&q=80" 
+    image: "/images/beras-5kg-premium.png" 
   },
   { 
     id: 2, 
@@ -16,7 +18,7 @@ let products = [
     price: 34000, 
     stock: 15, 
     badge: "Diskon", 
-    image: "https://images.unsplash.com/photo-1474624000155-2f8490a6e344?w=400&q=80" 
+    image: "/images/minyak-goreng-2l.png" 
   },
   { 
     id: 3, 
@@ -24,8 +26,8 @@ let products = [
     category: "gula", 
     price: 16000, 
     stock: 30, 
-    badge: "", 
-    image: "https://images.unsplash.com/photo-1581441363689-1f3c3c414635?w=400&q=80" 
+    badge: "Populer", 
+    image: "/images/gula-pasir-1kg.png" 
   },
   { 
     id: 4, 
@@ -34,7 +36,7 @@ let products = [
     price: 28000, 
     stock: 10, 
     badge: "Fresh", 
-    image: "https://images.unsplash.com/photo-1587486913049-53fc88980cfc?w=400&q=80" 
+    image: "/images/telur-ayam-1kg.png" 
   },
   { 
     id: 5, 
@@ -42,8 +44,8 @@ let products = [
     category: "tepung", 
     price: 12000, 
     stock: 25, 
-    badge: "", 
-    image: "https://images.unsplash.com/photo-1627485937980-221c88ac04f9?w=400&q=80" 
+    badge: "Hemat", 
+    image: "/images/tepung-terigu-1kg.png" 
   },
   { 
     id: 6, 
@@ -52,15 +54,14 @@ let products = [
     price: 3000, 
     stock: 50, 
     badge: "", 
-    image: "https://images.unsplash.com/photo-1611077544775-68ecae480a58?w=400&q=80" 
+    image: "/images/garam-dapur-250g.png" 
   }
 ];
 
-// Data Akun Admin (Username: admin, Password: password123 yang sudah di-hash)
-// Password asli: password123
+// Data Akun Admin (Username: admin, Password: password123 yang terenkripsi bcrypt)
 const adminUser = {
   username: "admin",
-  passwordHash: "$2a$10$X1V5p4yZ2Q6qG8Z5Z5Z5Z.u5Z5Z5Z5Z5Z5Z5Z5Z5Z5Z5Z5Z5Z5Z5O" // Kita pakai logika validasi langsung di app.js atau bcrypt compare
+  passwordHash: bcrypt.hashSync("password123", 10)
 };
 
 module.exports = { products, adminUser };
