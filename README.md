@@ -134,4 +134,3 @@ Berikut adalah daftar tangkapan layar (screenshot / SS) yang disarankan untuk di
     - Response `GET /api/products` dalam format JSON.
     - Response `POST /api/chat` dalam format JSON.
     - Response `401 Unauthorized` ketika mencoba akses `POST/PUT/DELETE /api/products` tanpa login.
-
