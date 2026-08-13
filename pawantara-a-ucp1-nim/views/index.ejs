@@ -1,161 +1,369 @@
 <%- include('partials/navbar') %>
 
-<main class="container mx-auto px-4 py-8 flex-grow max-w-7xl">
+<main class="flex-grow">
     
-    <!-- Hero Header Title (Matching Mockup Text Header) -->
-    <section class="mb-8 border-b border-[#eee7e0] pb-6">
-        <h1 class="text-3xl md:text-5xl font-black tracking-tight text-[#3b0915] mb-2">
-            Custom <span class="maroon-gradient-text">Toko Sembako Store</span>
-        </h1>
-        <div class="flex flex-wrap items-center gap-3 text-[11px] font-extrabold uppercase tracking-widest text-slate-500">
-            <span>INVENTORY REALTIME</span>
-            <span>•</span>
-            <span class="text-[#75142c]">GRATIS ONGKIR MIN. 200RB</span>
-            <span>•</span>
-            <span class="text-[#c59b27]">ASISTEN AI 24/7</span>
+    <!-- ================= 1. HERO BANNER SECTION ================= -->
+    <section class="maroon-hero-bg text-white py-12 md:py-20 mb-12 shadow-md">
+        <div class="maroon-hero-glow"></div>
+        <div class="container mx-auto px-4 max-w-7xl relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                
+                <!-- Hero Text & CTA Column (7 Cols) -->
+                <div class="lg:col-span-7">
+                    <div class="inline-flex items-center gap-2 maroon-badge-gold px-3.5 py-1.5 rounded-full text-xs font-black uppercase tracking-wider mb-6 shadow-sm">
+                        <span>✨ TOKO SEMBAKO TERPERCAYA & SERBA ADA</span>
+                    </div>
+
+                    <h1 class="text-3xl md:text-5xl lg:text-6xl font-black tracking-tight text-white leading-tight mb-4">
+                        Pusat Sembako Segar, <br class="hidden sm:inline">
+                        <span class="text-amber-300">Lengkap & Hemat</span> Berkualitas
+                    </h1>
+
+                    <p class="text-slate-200 text-sm md:text-base leading-relaxed mb-8 max-w-2xl font-normal">
+                        Belanja kebutuhan pokok harian keluarga kini lebih cepat, hemat & praktis! Nikmati harga jujur bersaing, jaminan kualitas produk terjamin segar, dan pengantaran gratis ongkir langsung ke rumah Anda.
+                    </p>
+
+                    <!-- Hero CTA Buttons -->
+                    <div class="flex flex-wrap items-center gap-4 mb-10">
+                        <a href="/produk" class="maroon-btn-gold px-7 py-3.5 rounded-2xl text-xs md:text-sm font-black uppercase tracking-wider shadow-lg flex items-center gap-2.5">
+                            <span>🛒 Belanja Sembako Sekarang</span>
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                        </a>
+                        
+                        <a href="/tanya-ai" class="bg-white/10 hover:bg-white/20 text-white border border-white/30 backdrop-blur-md px-6 py-3.5 rounded-2xl text-xs md:text-sm font-bold uppercase tracking-wider transition flex items-center gap-2">
+                            <span>🤖 Tanya Asisten AI</span>
+                        </a>
+                    </div>
+
+                    <!-- Trust Metrics Badges -->
+                    <div class="pt-6 border-t border-white/15 grid grid-cols-3 gap-4 text-center sm:text-left">
+                        <div>
+                            <p class="text-lg md:text-xl font-black text-amber-300">100%</p>
+                            <p class="text-[11px] text-rose-100 uppercase tracking-wide font-medium">Produk Fresh</p>
+                        </div>
+                        <div>
+                            <p class="text-lg md:text-xl font-black text-amber-300">Rp 0</p>
+                            <p class="text-[11px] text-rose-100 uppercase tracking-wide font-medium">Ongkir Min 200rb</p>
+                        </div>
+                        <div>
+                            <p class="text-lg md:text-xl font-black text-amber-300">24/7</p>
+                            <p class="text-[11px] text-rose-100 uppercase tracking-wide font-medium">Layanan AI Toko</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hero Visual Feature Box (5 Cols) -->
+                <div class="lg:col-span-5">
+                    <div class="bg-white/10 backdrop-blur-xl border border-white/20 rounded-3xl p-6 shadow-2xl relative">
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="bg-[#c59b27] text-[#3b0915] text-[10px] font-black px-3 py-1 rounded-full uppercase tracking-wider">
+                                🔥 PRODUK UNGGULAN
+                            </span>
+                            <span class="text-xs text-amber-200 font-semibold">Stok Ter-update Realtime</span>
+                        </div>
+
+                        <!-- Card Featured Item Showcase -->
+                        <div class="bg-white rounded-2xl p-4 text-slate-800 shadow-md flex gap-4 items-center mb-4">
+                            <img src="/images/beras-5kg-premium.png" alt="Beras Premium" class="w-20 h-20 object-cover rounded-xl border border-slate-100">
+                            <div>
+                                <span class="text-[10px] font-extrabold uppercase text-[#75142c] bg-rose-50 px-2 py-0.5 rounded">TERLARIS</span>
+                                <h3 class="text-sm font-extrabold text-slate-800 mt-1">Beras 5kg Premium</h3>
+                                <p class="text-xs font-black text-[#75142c] mt-0.5">Rp 65.000</p>
+                                <p class="text-[11px] text-slate-500 mt-1">Sisa Stok: <strong class="text-[#75142c]">20 Pack</strong></p>
+                            </div>
+                        </div>
+
+                        <!-- Quick Feature Banner Inside Hero Box -->
+                        <div class="bg-[#4a0c1a]/80 border border-amber-400/30 rounded-2xl p-4 text-xs text-rose-100 flex items-center gap-3">
+                            <span class="text-2xl">🚚</span>
+                            <div>
+                                <h4 class="font-bold text-amber-300">Pengiriman Cepat Hari Ini</h4>
+                                <p class="text-[11px] text-rose-100/90 leading-tight mt-0.5">Pesan sebelum jam 15.00 WIB untuk dikirim langsung ke alamat tujuan.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
         </div>
     </section>
 
-    <!-- Main Asymmetric 2-Column Layout (Matching User Screenshot) -->
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+    <div class="container mx-auto px-4 max-w-7xl">
         
-        <!-- LEFT COLUMN: Featured Product Catalog Grid (8 Columns) -->
-        <div class="lg:col-span-8">
-            <div class="flex justify-between items-center mb-6">
-                <div class="flex items-center gap-2">
-                    <span class="w-2.5 h-2.5 rounded-full bg-[#75142c]"></span>
-                    <h2 class="text-xl font-extrabold text-[#3b0915] uppercase tracking-tight">Featured Product</h2>
+        <!-- ================= 2. FEATURE HIGHLIGHTS (KEUNGGULAN TOKO) ================= -->
+        <section class="mb-16">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+                
+                <div class="maroon-card p-6 rounded-2xl flex items-start gap-4">
+                    <div class="w-12 h-12 rounded-xl bg-rose-100/80 text-[#75142c] flex items-center justify-center text-2xl shrink-0">
+                        🚚
+                    </div>
+                    <div>
+                        <h3 class="text-sm font-black text-[#3b0915] uppercase tracking-wide mb-1">Gratis Pengantaran</h3>
+                        <p class="text-xs text-slate-500 leading-relaxed">Bebas ongkos kirim untuk pengiriman lokal dengan belanja min. Rp 200.000.</p>
+                    </div>
                 </div>
-                <a href="/produk" class="text-xs font-bold text-[#75142c] hover:underline transition flex items-center gap-1">
-                    <span>Lihat Semua Produk</span> &rarr;
+
+                <div class="maroon-card p-6 rounded-2xl flex items-start gap-4">
+                    <div class="w-12 h-12 rounded-xl bg-amber-100/80 text-[#c59b27] flex items-center justify-center text-2xl shrink-0">
+                        🌾
+                    </div>
+                    <div>
+                        <h3 class="text-sm font-black text-[#3b0915] uppercase tracking-wide mb-1">100% Produk Fresh</h3>
+                        <p class="text-xs text-slate-500 leading-relaxed">Bahan pokok segar dipasok resmi, higienis & kadaluarsa terjamin lama.</p>
+                    </div>
+                </div>
+
+                <div class="maroon-card p-6 rounded-2xl flex items-start gap-4">
+                    <div class="w-12 h-12 rounded-xl bg-rose-100/80 text-[#75142c] flex items-center justify-center text-2xl shrink-0">
+                        💰
+                    </div>
+                    <div>
+                        <h3 class="text-sm font-black text-[#3b0915] uppercase tracking-wide mb-1">Harga Hemat Jujur</h3>
+                        <p class="text-xs text-slate-500 leading-relaxed">Harga murah bersaing siap eceran maupun grosir untuk rumah tangga.</p>
+                    </div>
+                </div>
+
+                <div class="maroon-card p-6 rounded-2xl flex items-start gap-4">
+                    <div class="w-12 h-12 rounded-xl bg-amber-100/80 text-[#c59b27] flex items-center justify-center text-2xl shrink-0">
+                        🤖
+                    </div>
+                    <div>
+                        <h3 class="text-sm font-black text-[#3b0915] uppercase tracking-wide mb-1">Asisten AI 24/7</h3>
+                        <p class="text-xs text-slate-500 leading-relaxed">Cek stok, jam buka, dan info toko secara otomatis kapan saja via AI.</p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ================= 3. SHOP BY CATEGORY (KATEGORI SEMBAKO) ================= -->
+        <section class="mb-16">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-8 gap-3 border-b border-[#eee7e0] pb-4">
+                <div>
+                    <span class="text-xs font-black text-[#75142c] uppercase tracking-widest">Kategori Utama</span>
+                    <h2 class="text-2xl md:text-3xl font-black text-[#3b0915] tracking-tight mt-0.5">Jelajahi Berdasarkan Kategori</h2>
+                </div>
+                <a href="/produk" class="text-xs font-extrabold text-[#75142c] hover:underline flex items-center gap-1">
+                    <span>Lihat Semua Sembako</span> &rarr;
                 </a>
             </div>
 
-            <!-- Product Grid (3 Columns) -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5">
+            <!-- Category Grid (6 Categories) -->
+            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
+                
+                <a href="/produk?kategori=beras" class="maroon-category-card p-4 rounded-2xl text-center group block">
+                    <div class="cat-icon-box w-14 h-14 rounded-2xl bg-rose-50 text-[#75142c] flex items-center justify-center text-3xl mx-auto mb-3 transition duration-300">
+                        🌾
+                    </div>
+                    <h3 class="text-xs font-extrabold text-slate-800 group-hover:text-[#75142c] transition">Beras Premium</h3>
+                    <p class="text-[10px] text-slate-500 mt-0.5">Ramos, Pandan, C4</p>
+                </a>
+
+                <a href="/produk?kategori=minyak" class="maroon-category-card p-4 rounded-2xl text-center group block">
+                    <div class="cat-icon-box w-14 h-14 rounded-2xl bg-amber-50 text-[#c59b27] flex items-center justify-center text-3xl mx-auto mb-3 transition duration-300">
+                        🧈
+                    </div>
+                    <h3 class="text-xs font-extrabold text-slate-800 group-hover:text-[#75142c] transition">Minyak Goreng</h3>
+                    <p class="text-[10px] text-slate-500 mt-0.5">Murni 1L & 2L</p>
+                </a>
+
+                <a href="/produk?kategori=gula" class="maroon-category-card p-4 rounded-2xl text-center group block">
+                    <div class="cat-icon-box w-14 h-14 rounded-2xl bg-rose-50 text-[#75142c] flex items-center justify-center text-3xl mx-auto mb-3 transition duration-300">
+                        🍬
+                    </div>
+                    <h3 class="text-xs font-extrabold text-slate-800 group-hover:text-[#75142c] transition">Gula Pasir</h3>
+                    <p class="text-[10px] text-slate-500 mt-0.5">Kristal Putih Murni</p>
+                </a>
+
+                <a href="/produk?kategori=telur" class="maroon-category-card p-4 rounded-2xl text-center group block">
+                    <div class="cat-icon-box w-14 h-14 rounded-2xl bg-amber-50 text-[#c59b27] flex items-center justify-center text-3xl mx-auto mb-3 transition duration-300">
+                        🥚
+                    </div>
+                    <h3 class="text-xs font-extrabold text-slate-800 group-hover:text-[#75142c] transition">Telur Ayam</h3>
+                    <p class="text-[10px] text-slate-500 mt-0.5">Segar Grade A</p>
+                </a>
+
+                <a href="/produk?kategori=tepung" class="maroon-category-card p-4 rounded-2xl text-center group block">
+                    <div class="cat-icon-box w-14 h-14 rounded-2xl bg-rose-50 text-[#75142c] flex items-center justify-center text-3xl mx-auto mb-3 transition duration-300">
+                        🍞
+                    </div>
+                    <h3 class="text-xs font-extrabold text-slate-800 group-hover:text-[#75142c] transition">Tepung Terigu</h3>
+                    <p class="text-[10px] text-slate-500 mt-0.5">Serbaguna Kemasan</p>
+                </a>
+
+                <a href="/produk?kategori=bumbu" class="maroon-category-card p-4 rounded-2xl text-center group block">
+                    <div class="cat-icon-box w-14 h-14 rounded-2xl bg-amber-50 text-[#c59b27] flex items-center justify-center text-3xl mx-auto mb-3 transition duration-300">
+                        🧂
+                    </div>
+                    <h3 class="text-xs font-extrabold text-slate-800 group-hover:text-[#75142c] transition">Bumbu & Garam</h3>
+                    <p class="text-[10px] text-slate-500 mt-0.5">Garam & Penyedap</p>
+                </a>
+
+            </div>
+        </section>
+
+        <!-- ================= 4. FEATURED PRODUCTS SHOWCASE ================= -->
+        <section class="mb-16">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-8 gap-3 border-b border-[#eee7e0] pb-4">
+                <div>
+                    <span class="text-xs font-black text-[#75142c] uppercase tracking-widest">Pilihan Utama</span>
+                    <h2 class="text-2xl md:text-3xl font-black text-[#3b0915] tracking-tight mt-0.5">🔥 Produk Sembako Unggulan & Terlaris</h2>
+                </div>
+                <a href="/produk" class="maroon-btn-secondary px-4 py-2 rounded-xl text-xs font-extrabold uppercase shadow-xs flex items-center gap-1">
+                    <span>Lihat Katalog Lengkap</span> &rarr;
+                </a>
+            </div>
+
+            <!-- Product Cards Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6">
                 <% products.forEach(p => { %>
-                    <article class="maroon-card p-3.5 rounded-2xl group flex flex-col relative">
+                    <article class="maroon-card p-4 rounded-2xl group flex flex-col relative bg-white">
                         
-                        <!-- Badges -->
-                        <div class="absolute top-5 left-5 z-10">
+                        <!-- Badge Top Left -->
+                        <div class="absolute top-6 left-6 z-10">
                             <% if (p.badge) { %>
-                                <span class="maroon-badge text-[10px] font-extrabold px-2 py-0.5 rounded uppercase tracking-wider shadow-xs"><%= p.badge %></span>
+                                <span class="maroon-badge text-[10px] font-extrabold px-2.5 py-1 rounded-md uppercase tracking-wider shadow-xs"><%= p.badge %></span>
+                            <% } else { %>
+                                <span class="bg-slate-700 text-white text-[10px] font-extrabold px-2.5 py-1 rounded-md uppercase tracking-wider shadow-xs">Sembako</span>
                             <% } %>
                         </div>
 
                         <!-- Gambar Produk + Price Overlay Tag -->
-                        <a href="/produk/<%= p.id %>" class="block h-44 w-full mb-3 overflow-hidden rounded-xl bg-slate-50 relative border border-slate-100 group-hover:border-[#75142c]/30 transition">
+                        <a href="/produk/<%= p.id %>" class="block h-48 w-full mb-4 overflow-hidden rounded-xl bg-slate-50 relative border border-slate-100 group-hover:border-[#75142c]/30 transition">
                             <img src="<%= p.image %>" alt="<%= p.name %>" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
                             
-                            <!-- Price Overlay Tag Pill -->
-                            <div class="absolute bottom-2.5 right-2.5 maroon-price-tag text-xs px-2.5 py-1 rounded-lg">
+                            <!-- Price Tag Pill -->
+                            <div class="absolute bottom-3 right-3 maroon-price-tag text-xs px-3 py-1.5 rounded-lg font-black">
                                 Rp <%= p.price.toLocaleString('id-ID') %>
                             </div>
                         </a>
 
-                        <!-- Detail Teks -->
-                        <a href="/produk/<%= p.id %>" class="flex-grow flex flex-col justify-between">
+                        <!-- Detail Teks & Action -->
+                        <div class="flex-grow flex flex-col justify-between">
                             <div>
-                                <h3 class="text-sm font-extrabold text-slate-800 line-clamp-1 leading-tight mb-1 group-hover:text-[#75142c] transition"><%= p.name %></h3>
-                                <p class="text-[11px] text-slate-500 capitalize mb-3 line-clamp-2 leading-snug">Sembako segar pilihan kualitas terbaik dari Toko Ariesta.</p>
+                                <div class="flex items-center gap-2 mb-1">
+                                    <span class="text-[10px] font-bold uppercase tracking-wider text-[#75142c] bg-rose-50 px-2 py-0.5 rounded"><%= p.category %></span>
+                                    <span class="text-[10px] text-slate-400">• Ready Stock</span>
+                                </div>
+                                <h3 class="text-base font-extrabold text-slate-800 line-clamp-1 leading-snug mb-1 group-hover:text-[#75142c] transition">
+                                    <a href="/produk/<%= p.id %>"><%= p.name %></a>
+                                </h3>
+                                <p class="text-xs text-slate-500 leading-relaxed mb-4">Sembako pilihan berkualitas tinggi dari Toko Sembako Ariesta.</p>
                             </div>
                             
-                            <div class="flex items-center justify-between pt-2 border-t border-slate-100">
-                                <span class="text-[11px] text-slate-500">Stok: <strong class="text-[#75142c]"><%= p.stock %></strong></span>
-                                <span class="text-xs font-black text-[#75142c] group-hover:translate-x-1 transition">&rarr;</span>
+                            <div class="flex items-center justify-between pt-3 border-t border-slate-100">
+                                <span class="text-xs text-slate-600 font-semibold">Stok: <strong class="text-[#75142c] font-extrabold"><%= p.stock %> item</strong></span>
+                                
+                                <a href="/produk/<%= p.id %>" class="maroon-btn px-3.5 py-1.5 rounded-xl text-xs font-bold flex items-center gap-1">
+                                    <span>Detail</span>
+                                    <span class="group-hover:translate-x-0.5 transition">&rarr;</span>
+                                </a>
                             </div>
-                        </a>
+                        </div>
+
                     </article>
                 <% }) %>
             </div>
-        </div>
 
-        <!-- RIGHT SIDEBAR COLUMN: Promo & Interactive Widgets (4 Columns) -->
-        <aside class="lg:col-span-4 flex flex-col gap-6 sticky top-24">
-            
-            <!-- Sidebar Widget 1: START SELLING / SHOPPING NOW Block (Maroon Box) -->
-            <div class="maroon-sidebar-primary p-6 rounded-3xl text-white shadow-xl relative overflow-hidden">
-                
-                <span class="inline-block maroon-badge-gold text-[10px] font-extrabold px-3 py-1 rounded-full uppercase tracking-wider mb-4">
-                    ⚡ Asisten AI Toko
-                </span>
-                
-                <h3 class="text-2xl font-black uppercase tracking-tight leading-tight mb-2 text-white">
-                    Start Shopping Now
-                </h3>
-                
-                <p class="text-xs text-rose-100 leading-relaxed mb-6">
-                    Pesan sembako instan & dapatkan informasi ongkir serta stok realtime via AI.
-                </p>
-
-                <!-- Quick Query Selector -->
-                <div class="mb-5">
-                    <select onchange="if(this.value) window.location.href='/tanya-ai'" class="maroon-input w-full px-3.5 py-2.5 rounded-xl text-xs bg-white text-slate-800 font-semibold border-none">
-                        <option value="">Pilih Informasi Cepat... ▾</option>
-                        <option value="buka">⏰ Jam Operasional Toko</option>
-                        <option value="ongkir">🚚 Tarif Gratis Ongkir</option>
-                        <option value="bayar">💳 Metode Pembayaran</option>
-                        <option value="stok">🌾 Cek Sembako Ready</option>
-                    </select>
-                </div>
-
-                <!-- Big Action Button (Gold Button) -->
-                <a href="/tanya-ai" class="maroon-btn-gold w-full py-3.5 rounded-xl flex items-center justify-center gap-2 text-xs font-black uppercase tracking-wider shadow-md">
-                    <span>Tanya AI Sekarang</span>
+            <!-- Big Banner CTA to /produk -->
+            <div class="mt-10 text-center">
+                <a href="/produk" class="inline-flex items-center gap-2 maroon-btn px-8 py-4 rounded-2xl text-xs md:text-sm font-black uppercase tracking-wider shadow-md">
+                    <span>Lihat Semua Produk di Katalog (All Products)</span>
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
                 </a>
             </div>
+        </section>
 
-            <!-- Sidebar Widget 2: Accordion Block -->
-            <div class="maroon-card p-6 rounded-3xl shadow-sm flex flex-col gap-4">
-                
-                <!-- Main Top CTA Button -->
-                <a href="/produk" class="maroon-btn-secondary w-full py-3.5 rounded-xl text-center text-xs font-black uppercase tracking-wider shadow-xs">
-                    Lihat Katalog Lengkap &rarr;
-                </a>
-
-                <!-- Accordions -->
-                <div class="space-y-2 pt-2">
-                    <details class="maroon-accordion-item rounded-xl p-3 text-xs">
-                        <summary class="font-extrabold text-slate-800 cursor-pointer flex justify-between items-center">
-                            <span>METODE PEMBAYARAN</span>
-                            <span class="text-[#75142c] text-xs">▾</span>
-                        </summary>
-                        <p class="mt-2 text-slate-600 leading-relaxed text-[11px]">
-                            Mendukung Tunai (COD / Kasir), Transfer Bank (BCA & Mandiri), serta QRIS All Payment.
+        <!-- ================= 5. INTERACTIVE AI ASSISTANT BANNER ================= -->
+        <section class="mb-16">
+            <div class="maroon-sidebar-primary p-8 md:p-12 rounded-3xl text-white shadow-2xl relative overflow-hidden">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-10">
+                    
+                    <div class="lg:col-span-8">
+                        <span class="inline-block maroon-badge-gold text-[11px] font-black px-3.5 py-1 rounded-full uppercase tracking-wider mb-4">
+                            🤖 ASISTEN AI PINTAR TOKO ARIESTA
+                        </span>
+                        <h2 class="text-2xl md:text-4xl font-black uppercase tracking-tight text-white leading-tight mb-3">
+                            Punya Pertanyaan Seputar Stok, Ongkir, atau Jam Buka?
+                        </h2>
+                        <p class="text-rose-100 text-xs md:text-sm leading-relaxed mb-6 max-w-2xl font-normal">
+                            Asisten AI kami siap memberikan jawaban cepat 24 jam nonstop! Tanyakan informasi jam operasional, syarat gratis pengantaran, metode pembayaran, hingga ketersediaan stok sembako secara otomatis.
                         </p>
-                    </details>
 
-                    <details class="maroon-accordion-item rounded-xl p-3 text-xs">
-                        <summary class="font-extrabold text-slate-800 cursor-pointer flex justify-between items-center">
-                            <span>ESTIMASI PENGIRIMAN</span>
-                            <span class="text-[#75142c] text-xs">▾</span>
-                        </summary>
-                        <p class="mt-2 text-slate-600 leading-relaxed text-[11px]">
-                            Pengiriman lokal gratis ongkir minimal belanja Rp 200.000 dikirim di hari yang sama.
-                        </p>
-                    </details>
+                        <!-- Quick Query Chips -->
+                        <div class="flex flex-wrap gap-2.5 mb-2">
+                            <a href="/tanya-ai" class="bg-white/15 hover:bg-white/25 text-white border border-white/20 px-3.5 py-1.5 rounded-xl text-xs font-semibold transition">
+                                ⏰ Jam Operasional Toko
+                            </a>
+                            <a href="/tanya-ai" class="bg-white/15 hover:bg-white/25 text-white border border-white/20 px-3.5 py-1.5 rounded-xl text-xs font-semibold transition">
+                                🚚 Syarat Gratis Ongkir
+                            </a>
+                            <a href="/tanya-ai" class="bg-white/15 hover:bg-white/25 text-white border border-white/20 px-3.5 py-1.5 rounded-xl text-xs font-semibold transition">
+                                💳 Metode Pembayaran COD / QRIS
+                            </a>
+                            <a href="/tanya-ai" class="bg-white/15 hover:bg-white/25 text-white border border-white/20 px-3.5 py-1.5 rounded-xl text-xs font-semibold transition">
+                                🌾 Cek Sisa Stok Beras & Minyak
+                            </a>
+                        </div>
+                    </div>
 
-                    <details class="maroon-accordion-item rounded-xl p-3 text-xs">
-                        <summary class="font-extrabold text-slate-800 cursor-pointer flex justify-between items-center">
-                            <span>JAMINAN KUALITAS</span>
-                            <span class="text-[#75142c] text-xs">▾</span>
-                        </summary>
-                        <p class="mt-2 text-slate-600 leading-relaxed text-[11px]">
-                            100% Produk bahan pokok original, higienis, dan tanggal kadaluarsa terjamin lama.
-                        </p>
-                    </details>
-                </div>
+                    <div class="lg:col-span-4 flex flex-col items-stretch lg:items-end justify-center">
+                        <a href="/tanya-ai" class="maroon-btn-gold py-4 px-8 rounded-2xl text-center text-xs md:text-sm font-black uppercase tracking-wider shadow-xl flex items-center justify-center gap-2">
+                            <span>Mulai Tanya AI Sekarang</span>
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                        </a>
+                    </div>
 
-                <!-- Footer Tag inside widget -->
-                <div class="pt-4 border-t border-slate-100 text-center">
-                    <span class="text-[10px] font-black tracking-widest text-slate-400 uppercase">
-                        TOKO ARIESTA • OFFICIAL STORE
-                    </span>
                 </div>
             </div>
+        </section>
 
-        </aside>
+        <!-- ================= 6. STORE INFORMATION & LOCATION ================= -->
+        <section class="mb-16">
+            <div class="text-center mb-8">
+                <span class="text-xs font-black text-[#75142c] uppercase tracking-widest">Informasi Pelayanan</span>
+                <h2 class="text-2xl md:text-3xl font-black text-[#3b0915] tracking-tight mt-0.5">Komitmen & Layanan Pelanggan</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                <div class="maroon-card p-6 rounded-2xl text-center">
+                    <div class="w-14 h-14 rounded-full bg-rose-50 text-[#75142c] flex items-center justify-center text-2xl mx-auto mb-4 font-black">
+                        ⏰
+                    </div>
+                    <h3 class="text-base font-extrabold text-slate-800 mb-2">Jam Operasional</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed font-medium">
+                        <strong>Senin - Sabtu:</strong> 07.30 - 21.00 WIB<br>
+                        <strong>Minggu:</strong> 08.00 - 18.00 WIB
+                    </p>
+                </div>
+
+                <div class="maroon-card p-6 rounded-2xl text-center">
+                    <div class="w-14 h-14 rounded-full bg-amber-50 text-[#c59b27] flex items-center justify-center text-2xl mx-auto mb-4 font-black">
+                        📍
+                    </div>
+                    <h3 class="text-base font-extrabold text-slate-800 mb-2">Alamat & Pengiriman</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed font-medium">
+                        Jl. Sembako Raya No. 123, Yogyakarta.<br>
+                        Melayani antar alamat & pesan langsung di toko.
+                    </p>
+                </div>
+
+                <div class="maroon-card p-6 rounded-2xl text-center">
+                    <div class="w-14 h-14 rounded-full bg-rose-50 text-[#75142c] flex items-center justify-center text-2xl mx-auto mb-4 font-black">
+                        💳
+                    </div>
+                    <h3 class="text-base font-extrabold text-slate-800 mb-2">Pilihan Pembayaran</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed font-medium">
+                        • Tunai (COD / Kasir Toko)<br>
+                        • Transfer Bank (BCA & Mandiri)<br>
+                        • QRIS All Payment
+                    </p>
+                </div>
+
+            </div>
+        </section>
 
     </div>
 
