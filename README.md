@@ -12,7 +12,7 @@ Proyek UCP 1 Pemrograman Aplikasi Web (PAW) — Full Stack Node.js & Express.js.
 ---
 
 ## 📝 Deskripsi Proyek
-**Toko Sembako Ariesta** adalah aplikasi web full stack yang dirancang untuk membantu Ibu Aries mengelola inventaris sembako (beras, minyak goreng, gula, telur, tepung, bumbu) secara efisien dan mandiri. 
+**Toko Sembako Ariesta** adalah aplikasi web full stack yang dirancang untuk membantu Ibu Aries mengelola inventaris sembako (beras, minyak goreng, gula, telur, tepung, bumbu) secara efisien dan mandiri.
 
 Aplikasi ini dilengkapi dengan:
 - **Katalog Publik & Detail Produk**: Memungkinkan pelanggan melihat daftar produk sembako, harga, dan sisa stok secara realtime tanpa reload halaman.
@@ -83,54 +83,111 @@ Seluruh response API dikembalikan secara konsisten dalam format JSON `{ status, 
 
 ## 🎨 Penjelasan Tampilan Antarmuka (UI)
 
-Seluruh antarmuka aplikasi dirancang menggunakan **Tailwind CSS CDN** dengan tema warna utama **Tazaj Mart Green (`#115c38`)** dan tata letak responsif (mobile & desktop):
+Seluruh antarmuka aplikasi dirancang menggunakan **Tailwind CSS CDN** dengan tema warna utama **Tazaj Mart Green (`#115c38`)** dan tata letak responsif (mobile & desktop).
 
-1. **Halaman Beranda (`/`)**:
-   - **Hero Banner**: Menyampaikan promo gratis ongkir dan tombol ajakan melihat produk / Tanya AI.
-   - **Feature Cards**: Menjelaskan keunggulan pengantaran gratis, stok realtime, dan asisten AI.
-   - **Preview Produk**: Menampilkan kartu produk pilihan yang selaras dengan katalog utama.
+### 1. Halaman Beranda (`/`)
+- **Hero Banner**: Menyampaikan promo gratis ongkir dan tombol ajakan melihat produk / Tanya AI.
+- **Feature Cards**: Menjelaskan keunggulan pengantaran gratis, stok realtime, dan asisten AI.
+- **Preview Produk**: Menampilkan kartu produk pilihan yang selaras dengan katalog utama.
 
-2. **Halaman All Products (`/produk`)**:
-   - **Search & Filter Bar**: Form pencarian produk berdasarkan nama dan dropdown filter kategori (`beras`, `minyak`, `gula`, `telur`, `tepung`, `bumbu`).
-   - **Product Grid**: Grid responsif (2 kolom di mobile, 4 kolom di desktop) berisi gambar sembako presisi, badge promo (`Best Sale`, `Diskon`, `Fresh`), harga `Rp XX.XXX`, stok, dan tombol cepat `+`.
+![Halaman Beranda](pawantara-a-ucp1-nim/screenshots/01-beranda.png)
 
-3. **Halaman Detail Produk (`/produk/:id`)**:
-   - **Dynamic Route**: Tampilan 2 kolom memuat foto produk beresolusi tinggi, tag kategori, harga, status ketersediaan stok realtime, tombol order via WhatsApp, dan penanganan ID 404 jika produk tidak ditemukan.
+### 2. Navbar Mobile (Hamburger Menu)
+Menu hamburger yang bisa dibuka/tutup dengan JavaScript di tampilan mobile.
 
-4. **Halaman Tanya AI (`/tanya-ai`)**:
-   - **Interactive Chatbox**: Tampilan percakapan modern dengan bubble chat hijau untuk pelanggan dan abu-abu untuk AI.
-   - **Quick Prompt Chips**: Tombol pintas pertanyaan umum (Jam Buka, Ongkir, Pembayaran, Stok Sembako).
-   - **Fetch API Integration**: Mengonsumsi `POST /api/chat` secara asynchronous tanpa reload halaman.
+![Navbar Mobile](pawantara-a-ucp1-nim/screenshots/02-hamburger-mobile.png)
 
-5. **Halaman Login Admin (`/login`)**:
-   - **Form Aksesibel**: Kartu login ringkas dengan validasi input dasar dan pesan alert interaktif jika kredensial salah.
+### 3. Halaman All Products (`/produk`)
+- **Search & Filter Bar**: Form pencarian produk berdasarkan nama dan dropdown filter kategori (`beras`, `minyak`, `gula`, `telur`, `tepung`, `bumbu`).
+- **Product Grid**: Grid responsif (2 kolom di mobile, 4 kolom di desktop) berisi gambar sembako presisi, badge promo (`Best Sale`, `Diskon`, `Fresh`), harga `Rp XX.XXX`, stok, dan tombol cepat `+`.
 
-6. **Halaman Dashboard Admin (`/dashboard`)**:
-   - **Protected View**: Hanya bisa dibuka setelah login.
-   - **Form CRUD**: Form serbaguna untuk Tambah dan Edit produk sembako (nama, kategori, harga, stok, badge, URL gambar).
-   - **Tabel Inventaris**: Tabel inventaris rapi dengan tombol aksi `✏️ Edit` dan `🗑️ Hapus` yang langsung memperbarui DOM dan server state via Fetch API (`POST`, `PUT`, `DELETE`).
+![Halaman Produk](pawantara-a-ucp1-nim/screenshots/03-all-products.png)
+
+### 4. Hasil Filter / Pencarian Produk
+Contoh: `/produk?kategori=minyak` atau `/produk?search=beras`.
+
+![Filter Produk](pawantara-a-ucp1-nim/screenshots/04-filter-hasil.png)
+
+### 5. Halaman Detail Produk (`/produk/:id`)
+- **Dynamic Route**: Tampilan 2 kolom memuat foto produk beresolusi tinggi, tag kategori, harga, status ketersediaan stok realtime, dan tombol order via WhatsApp.
+
+![Detail Produk](pawantara-a-ucp1-nim/screenshots/05-detail-produk.png)
+
+### 6. Halaman Detail Produk — Not Found (`/produk/999`)
+Penanganan ID tidak ditemukan dengan pesan 404 yang wajar (bukan crash server).
+
+![Produk Tidak Ditemukan](pawantara-a-ucp1-nim/screenshots/06-produk-not-found.png)
+
+### 7. Halaman Tanya AI (`/tanya-ai`)
+- **Interactive Chatbox**: Tampilan percakapan modern dengan bubble chat hijau untuk pelanggan dan abu-abu untuk AI.
+- **Quick Prompt Chips**: Tombol pintas pertanyaan umum (Jam Buka, Ongkir, Pembayaran, Stok Sembako).
+- **Fetch API Integration**: Mengonsumsi `POST /api/chat` secara asynchronous tanpa reload halaman.
+
+![Tanya AI](pawantara-a-ucp1-nim/screenshots/07-tanya-ai.png)
+
+### 8. Halaman Login Admin (`/login`)
+- **Form Aksesibel**: Kartu login ringkas dengan validasi input dasar dan pesan alert interaktif jika kredensial salah.
+
+![Login Admin](pawantara-a-ucp1-nim/screenshots/08-login-admin.png)
+
+<!-- TODO: tambahkan screenshot percobaan login dengan password salah, lalu ganti baris di bawah ini -->
+![Login Gagal](pawantara-a-ucp1-nim/screenshots/08b-login-error.png)
+
+### 9. Halaman Dashboard Admin (`/dashboard`)
+- **Protected View**: Hanya bisa dibuka setelah login.
+- **Form CRUD**: Form serbaguna untuk Tambah dan Edit produk sembako (nama, kategori, harga, stok, badge, URL gambar).
+- **Tabel Inventaris**: Tabel inventaris rapi dengan tombol aksi `✏️ Edit` dan `🗑️ Hapus` yang langsung memperbarui DOM dan server state via Fetch API (`POST`, `PUT`, `DELETE`).
+
+![Dashboard Admin](pawantara-a-ucp1-nim/screenshots/09.png)
+
+### 10. Pengujian Tambah / Edit / Hapus Produk
+<!-- TODO: file belum ada — screenshot dashboard setelah menambah produk baru -->
+![Tambah Produk](pawantara-a-ucp1-nim/screenshots/10-tambah-produk.png)
+
+<!-- TODO: file belum ada — screenshot proses edit harga/stok produk -->
+![Edit Produk](pawantara-a-ucp1-nim/screenshots/10b-edit-produk.png)
+
+<!-- TODO: file belum ada — screenshot setelah hapus produk -->
+![Hapus Produk](pawantara-a-ucp1-nim/screenshots/10c-hapus-produk.png)
+
+### 11. Log Terminal Server (Custom Logger Middleware)
+<!-- TODO: file belum ada — screenshot terminal yang memperlihatkan log request HTTP -->
+![Log Terminal](pawantara-a-ucp1-nim/screenshots/11-log-terminal.png)
 
 ---
 
-## 📷 Daftar Tangkapan Layar (Screenshot) yang Perlu Diambil Untuk Pengumpulan
+## 📮 Pengujian REST API via Postman
 
-Berikut adalah daftar tangkapan layar (screenshot / SS) yang disarankan untuk dilampirkan dalam laporan atau pengumpulan Moodle:
+<!-- TODO: folder postman/ belum ada di screenshots — buat screenshot berikut lalu simpan di pawantara-a-ucp1-nim/screenshots/postman/ -->
 
-### 🔹 Sprint 1 (Tampilan & Route Server)
-1. **Halaman Beranda (`/`)** — Menampilkan Hero Banner, Feature Cards, dan Navbar desktop.
-2. **Halaman Navbar Mobile & Hamburger Menu** — Menampilkan menu hamburger yang terbuka di layar HP/responsive view.
-3. **Halaman All Products (`/produk`)** — Menampilkan Katalog Produk dengan Search Bar & Filter Kategori.
-4. **Hasil Filter / Pencarian Produk** — Tampilan produk saat memfilter kategori (misal: `?kategori=minyak`) atau pencarian nama produk.
-5. **Halaman Detail Produk (`/produk/:id`)** — Detail 1 produk sembako (contoh ID 1).
-6. **Halaman Detail Produk Not Found (`/produk/999`)** — Penanganan ID tidak ditemukan dengan pesan 404 yang wajar.
+### GET /api/products
+![GET Products](pawantara-a-ucp1-nim/screenshots/postman/01-get-products.png)
 
-### 🔹 Sprint 2 (REST API, Auth & Interaktivitas)
-7. **Halaman Tanya AI (`/tanya-ai`)** — Percakapan interaktif dengan bubble chat pelanggan & jawaban AI dummy dari backend.
-8. **Halaman Login Admin (`/login`)** — Form login admin beserta uji coba pesan kesalahan saat password salah.
-9. **Halaman Dashboard Admin (`/dashboard`)** — Tabel inventaris produk dan form tambah/edit produk sembako (hanya tampil jika sudah login).
-10. **Pengujian Tambah / Edit / Hapus Produk** — Screenshot setelah menambah produk baru atau memperbarui stok/harga lewat dashboard.
-11. **Log Terminal Server (Custom Logger Middleware)** — Tangkapan layar terminal yang memperlihatkan log request HTTP (contoh: `[2026-08-14T...] GET masuk ke endpoint: /api/products`).
-12. **Pengujian REST API via Postman / Browser**:
-    - Response `GET /api/products` dalam format JSON.
-    - Response `POST /api/chat` dalam format JSON.
-    - Response `401 Unauthorized` ketika mencoba akses `POST/PUT/DELETE /api/products` tanpa login.
+### GET /api/products/:id
+![GET Product By ID](pawantara-a-ucp1-nim/screenshots/postman/02-get-product-by-id.png)
+
+### POST /api/login (berhasil)
+![Login Berhasil](pawantara-a-ucp1-nim/screenshots/postman/03-login-success.png)
+
+### POST /api/login (gagal)
+![Login Gagal](pawantara-a-ucp1-nim/screenshots/postman/04-login-fail.png)
+
+### POST /api/products — tanpa login (401 Unauthorized)
+![Unauthorized](pawantara-a-ucp1-nim/screenshots/postman/05-post-product-unauthorized.png)
+
+### POST /api/products — sudah login
+![POST Product Authorized](pawantara-a-ucp1-nim/screenshots/postman/06-post-product-authorized.png)
+
+### PUT /api/products/:id
+![PUT Product](pawantara-a-ucp1-nim/screenshots/postman/07-put-product.png)
+
+### DELETE /api/products/:id
+![DELETE Product](pawantara-a-ucp1-nim/screenshots/postman/08-delete-product.png)
+
+### POST /api/chat
+![POST Chat](pawantara-a-ucp1-nim/screenshots/postman/09-chat-endpoint.png)
+
+### POST /api/logout
+![Logout](pawantara-a-ucp1-nim/screenshots/postman/10-logout.png)
+
+---
